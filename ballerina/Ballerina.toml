@@ -2,10 +2,10 @@
 distribution = "2201.11.0"
 org = "ballerinax"
 name = "hubspot.crm.associations.schema"
-version = "1.0.0"
+version = "1.0.1"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = [] # TODO: Add keywords
+keywords = ["hubspot","crm","associations","schema"]
 # icon = "icon.png" # TODO: Add icon
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema"
 
