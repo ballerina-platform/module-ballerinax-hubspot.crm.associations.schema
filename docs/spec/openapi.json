@@ -29,7 +29,7 @@
     "/definitions/configurations/all" : {
       "get" : {
         "tags" : [ "Definition Configurations" ],
-        "summary" : "Read All",
+        "summary" : "Retrieve all association definitions and configurations",
         "description" : "Returns all user configurations available on a given portal",
         "operationId" : "get-/crm/v4/associations/definitions/configurations/all_getAll",
         "parameters" : [ ],
@@ -205,8 +205,8 @@
     "/definitions/configurations/{fromObjectType}/{toObjectType}" : {
       "get" : {
         "tags" : [ "Definition Configurations" ],
-        "summary" : "Read",
-        "description" : "Returns user configurations on all association definitions between two object types",
+        "summary" : "Retrieve association configurations between two object types.",
+        "description" : "Returns user-defined association configurations for all association definitions between the specified object types.",
         "operationId" : "get-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}_getAllBetweenTwoObjectTypes",
         "parameters" : [ {
           "name" : "fromObjectType",
@@ -399,8 +399,8 @@
     "/definitions/configurations/{fromObjectType}/{toObjectType}/batch/create" : {
       "post" : {
         "tags" : [ "Definition Configurations" ],
-        "summary" : "Create",
-        "description" : "Batch create user configurations between two object types",
+        "summary" : "Batch create association configurations between two object types.",
+        "description" : "Creates multiple user-defined association configurations between the specified object types in a single batch.",
         "operationId" : "post-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}/batch/create_batchCreate",
         "parameters" : [ {
           "name" : "fromObjectType",
@@ -613,8 +613,8 @@
     "/{fromObjectType}/{toObjectType}/labels" : {
       "get" : {
         "tags" : [ "Definitions" ],
-        "summary" : "Read",
-        "description" : "Returns all association types between two object types",
+        "summary" : "Retrieve all association labels between two object types.",
+        "description" : "Returns all association labels for the defined relationship between the specified object types.",
         "operationId" : "get-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_getAll",
         "parameters" : [ {
           "name" : "fromObjectType",
@@ -805,8 +805,8 @@
       },
       "put" : {
         "tags" : [ "Definitions" ],
-        "summary" : "Update",
-        "description" : "Update a user defined association definition",
+        "summary" : "Update a user-defined association definition",
+        "description" : "Updates an existing user-defined association definition between two object types",
         "operationId" : "put-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_update",
         "parameters" : [ {
           "name" : "fromObjectType",
@@ -1001,8 +1001,8 @@
       },
       "post" : {
         "tags" : [ "Definitions" ],
-        "summary" : "Create",
-        "description" : "Create a user defined association definition",
+        "summary" : "Create a user-defined association definition",
+        "description" : "Creates a new user-defined association definition between two object types",
         "operationId" : "post-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_create",
         "parameters" : [ {
           "name" : "fromObjectType",
@@ -1205,8 +1205,8 @@
     "/definitions/configurations/{fromObjectType}/{toObjectType}/batch/purge" : {
       "post" : {
         "tags" : [ "Definition Configurations" ],
-        "summary" : "Delete",
-        "description" : "Batch delete user configurations between two object types",
+        "summary" : "Batch delete configurations between two object types",
+        "description" : "Deletes multiple user-defined association configurations between the specified object types in a single batch",
         "operationId" : "post-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}/batch/purge_batchRemove",
         "parameters" : [ {
           "name" : "fromObjectType",
@@ -1403,8 +1403,8 @@
     "/{fromObjectType}/{toObjectType}/labels/{associationTypeId}" : {
       "delete" : {
         "tags" : [ "Definitions" ],
-        "summary" : "Delete",
-        "description" : "Deletes an association definition",
+        "summary" : "Delete an association definition by ID",
+        "description" : "Deletes the association definition corresponding to the specified association type ID between two object types",
         "operationId" : "delete-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels/{associationTypeId}_remove",
         "parameters" : [ {
           "name" : "fromObjectType",
@@ -1601,8 +1601,8 @@
     "/definitions/configurations/{fromObjectType}/{toObjectType}/batch/update" : {
       "post" : {
         "tags" : [ "Definition Configurations" ],
-        "summary" : "Update",
-        "description" : "Batch update user configurations between two object types",
+        "summary" : "Batch update configurations between two object types",
+        "description" : "Updates multiple user-defined association configurations between the specified object types in a single batch",
         "operationId" : "post-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}/batch/update_batchUpdate",
         "parameters" : [ {
           "name" : "fromObjectType",

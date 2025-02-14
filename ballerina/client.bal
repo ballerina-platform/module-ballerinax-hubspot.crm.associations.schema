@@ -61,7 +61,7 @@ public isolated client class Client {
         return;
     }
 
-    # Delete
+    # Delete an association definition by ID
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
@@ -76,7 +76,7 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    # Read
+    # Retrieve all association labels between two object types.
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
@@ -91,7 +91,7 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Read
+    # Retrieve association configurations between two object types.
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
@@ -106,7 +106,7 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Read All
+    # Retrieve all association definitions and configurations
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
@@ -121,7 +121,7 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Create
+    # Create a user-defined association definition
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
@@ -139,7 +139,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Create
+    # Batch create association configurations between two object types.
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
@@ -157,7 +157,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Delete
+    # Batch delete configurations between two object types
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
@@ -175,7 +175,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Update
+    # Batch update configurations between two object types
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
@@ -193,7 +193,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Update
+    # Update a user-defined association definition
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
