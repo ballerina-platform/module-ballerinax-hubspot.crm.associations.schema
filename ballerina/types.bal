@@ -161,7 +161,10 @@ public type BatchInputPublicAssociationDefinitionConfigurationUpdateRequest reco
     PublicAssociationDefinitionConfigurationUpdateRequest[] inputs;
 };
 
-# Provides API key configurations needed when communicating with a remote HTTP endpoint.
+# Provides API key configurations needed when communicating with a remote HTTP endpoint. 
+# + private\-app\-legacy - The API key used for legacy private app authentication. 
+# + private\-app - The API key used for private app authentication.
+
 public type ApiKeysConfig record {|
     string private\-app\-legacy;
     string private\-app;

@@ -2,10 +2,10 @@
 distribution = "2201.11.0"
 org = "ballerinax"
 name = "hubspot.crm.associations.schema"
-version = "1.0.1"
+version = "1.0.0"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["hubspot","crm","associations","schema"]
+keywords = ["hubspot" ,"crm" ,"associations" ,"schema"]
 #icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema"
 
