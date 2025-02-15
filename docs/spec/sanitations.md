@@ -1,4 +1,4 @@
-_Author_:  @AaishahHamdha \
+_Author_:  @Aaishah-Hamdha \
 _Created_: 13.02.2025 \
 _Updated_: 13.02.2025 \
 _Edition_: Swan Lake
@@ -12,20 +12,20 @@ These changes are done in order to improve the overall usability, and as workaro
 1. Change the `url` property of the servers object
 
 - **Original**:
-```https://api.hubspot.com```
+`https://api.hubspot.com`
 
 - **Updated**:
-```https://api.hubapi.com/crm/v4/associations```
+`https://api.hubapi.com/crm/v4/associations`
 
 - **Reason**: This change of adding the common prefix `crm/v4/associations` to the base url makes it easier to access endpoints using the client and also eliminates redundancy.
 
 2. Update the API Paths
 
-- **Original**: Paths included common prefix above in each endpoint. (eg: ```/crm/v4/associations```)
+- **Original**: Paths included common prefix above in each endpoint. (eg: `/crm/v4/associations`)
 
 - **Updated**: Common prefix is now removed from the endpoints as it is included in the base URL.
-  - **Original**: ```/crm/v4/associations```
-  - **Updated**: ```/```
+  - **Original**: `/crm/v4/associations`
+  - **Updated**: `/`
 
 3. Update the `date-time` into `datetime` to make it compatible with the ballerina type conversions
 
