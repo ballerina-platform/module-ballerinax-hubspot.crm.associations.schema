@@ -24,18 +24,12 @@ These changes are done in order to improve the overall usability, and as workaro
 - **Original**: Paths included common prefix above in each endpoint. (eg: `/crm/v4/associations`)
 
 - **Updated**: Common prefix is now removed from the endpoints as it is included in the base URL.
-  - **Original**: `/crm/v4/associations`
-  - **Updated**: `/`
-
-3. Update the `date-time` into `datetime` to make it compatible with the ballerina type conversions
-
-- **Original**: `format:date-time`
-`
-- **Updated**: `format:datetime`
-
-- **Reason**: The date-time format is not compatible with the openAPI generation tool. Therefore, it is updated to datetime to make it compatible with the generation tool.
-
 - **Reason**: This change simplifies the API paths, making them shorter and more readable.
+
+3. Update the `date-time` into `datetime` to make it compatible with the Ballerina type conversions.
+- **Original**: `"format": "date-time"`
+- **Updated**: `"format": "datetime"`
+- **Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
 
 ## OpenAPI cli command
 
