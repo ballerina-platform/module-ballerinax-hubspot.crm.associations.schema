@@ -1,6 +1,6 @@
 _Author_:  @Aaishah-Hamdha \
-_Created_: 13.02.2025 \
-_Updated_: 13.02.2025 \
+_Created_: 2025/02/13 \
+_Updated_: 2025/02/13 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
