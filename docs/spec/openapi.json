@@ -1870,7 +1870,8 @@
             "type" : "string"
           },
           "label" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable": true
           }
         }
       },
@@ -2106,7 +2107,8 @@
             "format" : "int32"
           },
           "label" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable": true
           }
         }
       },
@@ -2154,7 +2156,8 @@
             "format" : "int32"
           },
           "label" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable":true
           },
           "category" : {
             "type" : "string",
@@ -2180,14 +2183,16 @@
         "properties" : {
           "userEnforcedMaxToObjectIds" : {
             "type" : "integer",
-            "format" : "int32"
+            "format" : "int32",
+            "nullable": true
           },
           "typeId" : {
             "type" : "integer",
             "format" : "int32"
           },
           "label" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable": true
           },
           "category" : {
             "type" : "string",
