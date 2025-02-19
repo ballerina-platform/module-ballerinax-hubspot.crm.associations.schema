@@ -137,3 +137,83 @@ isolated function testDeleteAssociationDefinitions() returns error? {
         io:println("Deleted inverse association definition with ID: " + createdInverseLabelId.toString());
     }
 }
+
+//Association definition Configurations Tests
+//Test: Create association definition Configurations
+@test:Config {groups: ["live_test", "mock_test"]}
+isolated function testCreateAssociationDefinitionConfigurations() returns error? {
+    io:println("Running test: Create association definition Configurations...");
+    CollectionResponseAssociationSpecWithLabelNoPaging response =
+        check baseClient->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload = {
+        "inputs": [
+            {
+                "typeId": typeId,
+                "category": "HUBSPOT_DEFINED",
+                "maxToObjectIds": 2
+            }
+        ]
+    });
+
+    test:assertTrue(response.results.length() > 0, msg = "No definition configurations were created.");
+    test:assertEquals(response.results.length(), 1, msg = "Unexpected behavior on association definition configuration creation.");
+    io:println("Test Passed: Created association definition confgurations: " + response.results.length().toString());
+}
+
+//Test: Read ALL configurations
+@test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
+isolated function testGetAllDefinitionsConfigurations() returns error? {
+    io:println("Running test: Get all definitions configurations...");
+    CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
+        check baseClient->/definitions/configurations/all.get();
+    test:assertTrue(response.results.length() > 0, msg = "No configurations were returned.");
+    test:assertEquals(response.results.length(), 2, msg = "Unexpected behavior on all configurations retrieval.");
+    io:println("Test Passed: Retrieved all definition configurations: " + response.results.length().toString());
+}
+
+//Test: Read association definition configurations
+@test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
+isolated function testGetAssociationDefinitionConfigurations() returns error? {
+    io:println("Running test: Get association definition configurations...");
+    CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
+        check baseClient->/definitions/configurations/[fromObjectType]/[toObjectType].get();
+    test:assertTrue(response.results.length() > 0, msg = "No  association definition configurations were returned.");
+    io:println("Test Passed: Retrieved association definition configurations: " + response.results.length().toString());
+}
+
+//Test: Update configurations
+@test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
+isolated function testUpdateAssociationDefinitionConfigurations() returns error? {
+    io:println("Running test: Update association definition configurations...");
+    lock {
+        var response = check baseClient->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload = {
+            "inputs": [
+                {
+                    "typeId": typeId,
+                    "category": "HUBSPOT_DEFINED",
+                    "maxToObjectIds": 11
+                }
+            ]
+        });
+        test:assertTrue(response.results.length() > 0, msg = "Failed to update association definition configuration.");
+        test:assertEquals(response.status, "COMPLETE", msg = "Unexpected behavior for association definition configuration update.");
+        io:println("Test Passed: Association definition configuration updated successfully.");
+    }
+}
+
+//Test:Delete association definition configurations
+@test:Config {dependsOn: [testUpdateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
+isolated function testDeleteAssociationDefinitionConfigurations() returns error? {
+    io:println("Running test: Delete association definition configurations...");
+
+    var response = check baseClient->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload = {
+        "inputs": [
+            {
+                "typeId": typeId,
+                "category": "HUBSPOT_DEFINED"
+            }
+        ]
+    });
+
+    test:assertTrue(response.statusCode == 204, msg = "Unexpected behavior for association definition configuration deletion.");
+    io:println("Test Passed: Correctly handled association definition configuration deletion.");
+}
