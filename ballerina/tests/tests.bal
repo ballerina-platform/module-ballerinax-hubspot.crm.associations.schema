@@ -217,3 +217,78 @@ isolated function testDeleteAssociationDefinitionConfigurations() returns error?
     test:assertTrue(response.statusCode == 204, msg = "Unexpected behavior for association definition configuration deletion.");
     io:println("Test Passed: Correctly handled association definition configuration deletion.");
 }
+
+//negative test cases
+
+//Test(negative): Update association definition with invalid data
+@test:Config {groups: ["live_test", "mock_test"]}
+isolated function testUpdateAssociationDefinitionsInvalidData() returns error? {
+    io:println("Running test: Update association labels with invalid data...");
+    lock {
+        var response = check baseClient->/[fromObjectType]/[toObjectType]/labels.put(payload = {
+            "associationTypeId": -1, // Invalid associationTypeId
+            "label": "" // Invalid empty label
+        });
+
+        test:assertEquals(response.statusCode, 400, msg = "Unexpected behavior for invalid data.");
+        io:println("Test Passed: Correctly handled invalid data.");
+    }
+}
+
+//Test(negative): Create association definition configuration with invalid data
+@test:Config {groups: ["live_test", "mock_test"]}
+isolated function testCreateAssociationDefinitionConfigurationsInvalidData() returns error? {
+    io:println("Running test: Create association definitions with invalid data...");
+    lock {
+        var response = check baseClient->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload = {
+            "inputs": [
+                {
+                    "typeId": -1, // Invalid associationTypeId
+                    "category": "HUBSPOT_DEFINED",
+                    "maxToObjectIds": 2
+                }
+            ]
+        });
+
+        test:assertEquals(response.status, "CANCELED", msg = "Unexpected behavior for invalid data.");
+        io:println("Test Passed: Correctly handled invalid data.");
+    }
+}
+
+//Test(negative): Update association definition configuration with invalid data
+@test:Config {groups: ["live_test", "mock_test"]}
+isolated function testUpdateAssociationDefinitionConfigurationsInvalidId() returns error? {
+    io:println("Running test: Update association definitions with invalid data...");
+    lock {
+        var response = check baseClient->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload = {
+            "inputs": [
+                {
+                    "typeId": 5, //invalid type id for contact to deals association
+                    "category": "USER_DEFINED",
+                    "maxToObjectIds": 5
+                }
+            ]
+        });
+
+        test:assertEquals(response.status, "CANCELED", msg = "Unexpected behavior for invalid association type id.");
+        io:println("Test Passed: Correctly handled invalid association type id.");
+    }
+}
+
+//Test(negative): Delete association definition configuration with invalid data
+@test:Config {groups: ["live_test", "mock_test"]}
+isolated function testDeleteAssociationDefinitionConfigurationsWithInvalidData() returns error? {
+    io:println("Running test: Delete association definitions...");
+
+    var response = check baseClient->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload = {
+        "inputs": [
+            {
+                "typeId": 5, //invalid type id for contact to deals association
+                "category": "HUBSPOT_DEFINED"
+            }
+        ]
+    });
+
+    test:assertTrue(response.statusCode == 207 || response.statusCode == 400, msg = "Unexpected behavior for invalid association type id.");
+    io:println("Test Passed: Correctly handled invalid association definition data.");
+}
