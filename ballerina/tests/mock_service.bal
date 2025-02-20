@@ -67,7 +67,7 @@ service on new http:Listener(9090) {
         };
     }
     resource function post [string fromObjectType]/[string toObjectType]/labels(@http:Payload PublicAssociationDefinitionCreateRequest payload) returns CollectionResponseAssociationSpecWithLabelNoPaging|http:BadRequest {
-        if (payload.label == null) {
+        if payload.label == null {
             return http:BAD_REQUEST;
         }
         return {
@@ -86,7 +86,7 @@ service on new http:Listener(9090) {
         };
     }
     resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/create(@http:Payload BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload) returns BatchResponsePublicAssociationDefinitionUserConfiguration|error {
-        if (payload.inputs[0].typeId == -1) {
+        if payload.inputs[0].typeId == -1 {
             return {
                 "status": "CANCELED",
                 "results": [],
@@ -129,13 +129,13 @@ service on new http:Listener(9090) {
         };
     }
     resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge(@http:Payload BatchInputPublicAssociationSpec payload) returns http:NoContent|http:BadRequest|http:MultiStatus {
-        if (payload.inputs[0].typeId == 5) {
+        if payload.inputs[0].typeId == 5 {
             return http:BAD_REQUEST;
         }
         return http:NO_CONTENT;
     }
     resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update(@http:Payload BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload) returns BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|error {
-        if (payload.inputs[0].typeId == 5) {
+        if payload.inputs[0].typeId == 5 {
             return {
                 "status": "CANCELED",
                 "results": [],
@@ -177,7 +177,7 @@ service on new http:Listener(9090) {
         };
     }
     resource function put [string fromObjectType]/[string toObjectType]/labels(@http:Payload PublicAssociationDefinitionUpdateRequest payload) returns http:NoContent|http:BadRequest {
-        if (payload.label == null || payload.associationTypeId == -1) {
+        if payload.label == null || payload.associationTypeId == -1 {
             return http:BAD_REQUEST;
         }
         return http:NO_CONTENT;
