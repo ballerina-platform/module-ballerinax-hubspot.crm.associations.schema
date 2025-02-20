@@ -127,12 +127,12 @@ isolated function testDeleteAssociationDefinitions() returns error? {
     io:println("Running test: Delete association definitions...");
     lock {
         var response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdLabelId].delete();
-        test:assertTrue(response1.statusCode == 204, msg = "Association definition deletion failed");
+        test:assertEquals(response1.statusCode, 204 , msg = "Association definition deletion failed");
         io:println("Deleted association definition with ID: " + createdLabelId.toString());
     }
     lock {
         var response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdInverseLabelId].delete();
-        test:assertTrue(response2.statusCode == 204, msg = "Association definition deletion failed");
+        test:assertEquals(response2.statusCode, 204, msg = "Association definition deletion failed");
         io:println("Deleted inverse association definition with ID: " + createdInverseLabelId.toString());
     }
 }
@@ -213,7 +213,7 @@ isolated function testDeleteAssociationDefinitionConfigurations() returns error?
         ]
     });
 
-    test:assertTrue(response.statusCode == 204, msg = "Unexpected behavior for association definition configuration deletion.");
+    test:assertEquals(response.statusCode, 204, msg = "Unexpected behavior for association definition configuration deletion.");
     io:println("Test Passed: Correctly handled association definition configuration deletion.");
 }
 
