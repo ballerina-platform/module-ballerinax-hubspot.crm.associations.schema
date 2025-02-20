@@ -14,10 +14,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import ballerina/http;
 import ballerina/oauth2;
 import ballerina/os;
 import ballerina/test;
-import ballerina/http;
 
 final boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
 final string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v4/associations" : "http://localhost:9090";
@@ -59,10 +59,11 @@ isolated function initClient() returns Client|error {
 //Test: Create association definitions
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testCreateAssociationDefinitions() returns error? {
-      PublicAssociationDefinitionCreateRequest payload = {
+    PublicAssociationDefinitionCreateRequest payload = {
         inverseLabel: inverseLabel,
         name: labelName,
-        label: label};
+        label: label
+    };
     CollectionResponseAssociationSpecWithLabelNoPaging response =
         check hubspot->/[fromObjectType]/[toObjectType]/labels.post(payload);
     if response.results.length() > 0 {
@@ -84,12 +85,12 @@ isolated function testUpdateAssociationDefinitions() returns error? {
 
     int response1StatusCode = -1;
     int response2StatusCode = -1;
-    lock{
-    PublicAssociationDefinitionUpdateRequest payload = {
-        associationTypeId: createdLabelId,
-        label: labelToUpdate
-    };
-    
+    lock {
+        PublicAssociationDefinitionUpdateRequest payload = {
+            associationTypeId: createdLabelId,
+            label: labelToUpdate
+        };
+
         http:Response response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
         response1StatusCode = response1.statusCode;
     }
@@ -120,7 +121,7 @@ isolated function testGetAssociationDefinitions() returns error? {
 isolated function testDeleteAssociationDefinitions() returns error? {
     lock {
         http:Response response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdLabelId].delete();
-        test:assertEquals(response1.statusCode, 204 , msg = "Association definition deletion failed");
+        test:assertEquals(response1.statusCode, 204, msg = "Association definition deletion failed");
     }
     lock {
         http:Response response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdInverseLabelId].delete();
@@ -241,7 +242,7 @@ isolated function testUpdateAssociationDefinitionConfigurationsInvalidId() retur
         BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload = {
             inputs: [
                 {
-                    typeId: 5,//invalid type id for contact to deals association
+                    typeId: 5, //invalid type id for contact to deals association
                     category: "USER_DEFINED",
                     maxToObjectIds: 5
                 }
