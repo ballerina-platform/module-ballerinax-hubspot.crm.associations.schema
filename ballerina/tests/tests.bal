@@ -34,6 +34,9 @@ final string inverseLabel = "InverseLabel";
 final string labelName = "LabelName";
 final string labelToUpdate = "LabelNew";
 
+isolated int:Signed32 createdInverseLabelId = -1;
+isolated int:Signed32 createdLabelId = -1;
+
 final int:Signed32 typeId = 4; //association type id for contact to deals association
 
 //init client
@@ -52,10 +55,6 @@ isolated function initClient() returns Client|error {
     }
     return check new Client({auth: {token: "test-token"}}, serviceUrl);
 }
-
-isolated int:Signed32 createdInverseLabelId = -1;
-isolated int:Signed32 createdLabelId = -1;
-
 
 //Association definition Tests
 //Test: Create association definitions
