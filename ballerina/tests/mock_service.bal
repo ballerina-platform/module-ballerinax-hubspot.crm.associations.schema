@@ -23,16 +23,16 @@ service on new http:Listener(9090) {
 
     resource function get [string fromObjectType]/[string toObjectType]/labels() returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
         return {
-            "results": [
+            results: [
                 {
-                    "category": "HUBSPOT_DEFINED",
-                    "typeId": 4,
-                    "label": null
+                    category: "HUBSPOT_DEFINED",
+                    typeId: 4,
+                    label: null
                 },
                 {
-                    "category": "USER_DEFINED",
-                    "typeId": 543,
-                    "label": "label"
+                    category: "USER_DEFINED",
+                    typeId: 543,
+                    label: "label"
                 }
             ]
         };
@@ -40,12 +40,12 @@ service on new http:Listener(9090) {
 
     resource function get definitions/configurations/[string fromObjectType]/[string toObjectType]() returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
         return {
-            "results": [
+            results: [
                 {
-                    "category": "HUBSPOT_DEFINED",
-                    "typeId": 4,
-                    "userEnforcedMaxToObjectIds": 2,
-                    "label": null
+                    category: "HUBSPOT_DEFINED",
+                    typeId: 4,
+                    userEnforcedMaxToObjectIds: 2,
+                    label: null
                 }
             ]
         };
@@ -53,18 +53,18 @@ service on new http:Listener(9090) {
 
     resource function get definitions/configurations/all() returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
         return {
-            "results": [
+            results: [
                 {
-                    "category": "HUBSPOT_DEFINED",
-                    "typeId": 4,
-                    "userEnforcedMaxToObjectIds": 2,
-                    "label": null
+                    category: "HUBSPOT_DEFINED",
+                    typeId: 4,
+                    userEnforcedMaxToObjectIds: 2,
+                    label: null
                 },
                 {
-                    "category": "HUBSPOT_DEFINED",
-                    "typeId": 3,
-                    "userEnforcedMaxToObjectIds": null,
-                    "label": null
+                    category: "HUBSPOT_DEFINED",
+                    typeId: 3,
+                    userEnforcedMaxToObjectIds: null,
+                    label: null
                 }
             ]
         };
@@ -75,16 +75,16 @@ service on new http:Listener(9090) {
             return http:BAD_REQUEST;
         }
         return {
-            "results": [
+            results: [
                 {
-                    "category": "USER_DEFINED",
-                    "typeId": 546,
-                    "label": "label"
+                    category: "USER_DEFINED",
+                    typeId: 546,
+                    label: "label"
                 },
                 {
-                    "category": "USER_DEFINED",
-                    "typeId": 545,
-                    "label": "inverseLabel"
+                    category: "USER_DEFINED",
+                    typeId: 545,
+                    label: "inverseLabel"
                 }
             ]
         };
@@ -93,44 +93,24 @@ service on new http:Listener(9090) {
     resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/create(@http:Payload BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload) returns BatchResponsePublicAssociationDefinitionUserConfiguration|error {
         if payload.inputs[0].typeId == -1 {
             return {
-                "status": "CANCELED",
-                "results": [],
-                "numErrors": 1,
-                "errors": [
-                    {
-                        "status": "error",
-                        "category": "VALIDATION_ERROR",
-                        "subCategory": "crm.associations.INVALID_ASSOCIATION_TYPE",
-                        "message": "0--1 is not a valid association type between CONTACT and DEAL",
-                        "context": {
-                            "type": [
-                                "0-5"
-                            ],
-                            "fromObjectType": [
-                                "CONTACT"
-                            ],
-                            "toObjectType": [
-                                "DEAL"
-                            ]
-                        }
-                    }
-                ],
-                "startedAt": "2025-02-19T07:03:44.442Z",
-                "completedAt": "2025-02-19T07:03:44.475Z"
+                status: "CANCELED",
+                results: [],
+                startedAt: "2025-02-19T07:03:44.442Z",
+                completedAt: "2025-02-19T07:03:44.475Z"
             };
         }
         return {
-            "status": "COMPLETE",
-            "results": [
+            status: "COMPLETE",
+            results: [
                 {
-                    "category": "HUBSPOT_DEFINED",
-                    "typeId": 4,
-                    "userEnforcedMaxToObjectIds": 2,
-                    "label": null
+                    category: "HUBSPOT_DEFINED",
+                    typeId: 4,
+                    userEnforcedMaxToObjectIds: 2,
+                    label: null
                 }
             ],
-            "startedAt": "2025-02-19T05:28:18.851Z",
-            "completedAt": "2025-02-19T05:28:18.911Z"
+            startedAt: "2025-02-19T05:28:18.851Z",
+            completedAt: "2025-02-19T05:28:18.911Z"
         };
     }
 
@@ -144,43 +124,23 @@ service on new http:Listener(9090) {
     resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update(@http:Payload BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload) returns BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|error {
         if payload.inputs[0].typeId == 5 {
             return {
-                "status": "CANCELED",
-                "results": [],
-                "numErrors": 1,
-                "errors": [
-                    {
-                        "status": "error",
-                        "category": "VALIDATION_ERROR",
-                        "subCategory": "crm.associations.INVALID_ASSOCIATION_TYPE",
-                        "message": "0-5 is not a valid association type between CONTACT and DEAL",
-                        "context": {
-                            "type": [
-                                "0-5"
-                            ],
-                            "fromObjectType": [
-                                "CONTACT"
-                            ],
-                            "toObjectType": [
-                                "DEAL"
-                            ]
-                        }
-                    }
-                ],
-                "startedAt": "2025-02-19T07:03:44.442Z",
-                "completedAt": "2025-02-19T07:03:44.475Z"
+                status: "CANCELED",
+                results: [],
+                startedAt: "2025-02-19T07:03:44.442Z",
+                completedAt: "2025-02-19T07:03:44.475Z"
             };
         }
         return {
-            "status": "COMPLETE",
-            "results": [
+            status: "COMPLETE",
+            results: [
                 {
-                    "category": "HUBSPOT_DEFINED",
-                    "typeId": 4,
-                    "userEnforcedMaxToObjectIds": 11
+                    category: "HUBSPOT_DEFINED",
+                    typeId: 4,
+                    userEnforcedMaxToObjectIds: 11
                 }
             ],
-            "startedAt": "2025-02-19T05:45:32.920Z",
-            "completedAt": "2025-02-19T05:45:32.957Z"
+            startedAt: "2025-02-19T05:45:32.920Z",
+            completedAt: "2025-02-19T05:45:32.957Z"
         };
     }
 
