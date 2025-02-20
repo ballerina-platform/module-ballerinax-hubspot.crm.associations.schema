@@ -17,6 +17,7 @@
 import ballerina/oauth2;
 import ballerina/os;
 import ballerina/test;
+import ballerina/http;
 
 final boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
 final string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v4/associations" : "http://localhost:9090";
@@ -44,9 +45,9 @@ final Client hubspot = check initClient();
 isolated function initClient() returns Client|error {
     if isLiveServer {
         OAuth2RefreshTokenGrantConfig auth = {
-            clientId: clientId,
-            clientSecret: clientSecret,
-            refreshToken: refreshToken,
+            clientId,
+            clientSecret,
+            refreshToken,
             credentialBearer: oauth2:POST_BODY_BEARER
         };
         return check new Client({auth}, serviceUrl);
@@ -85,7 +86,7 @@ isolated function testUpdateAssociationDefinitions() returns error? {
     int response2StatusCode = -1;
 
     lock {
-        var response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload = {
+        http:Response response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload = {
             "associationTypeId": createdLabelId,
             "label": labelToUpdate
         });
@@ -93,7 +94,7 @@ isolated function testUpdateAssociationDefinitions() returns error? {
     }
 
     lock {
-        var response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload = {
+        http:Response response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload = {
             "associationTypeId": createdInverseLabelId,
             "label": labelToUpdate
         });
@@ -116,11 +117,11 @@ isolated function testGetAssociationDefinitions() returns error? {
 @test:Config {dependsOn: [testGetAssociationDefinitions], groups: ["live_test", "mock_test"]}
 isolated function testDeleteAssociationDefinitions() returns error? {
     lock {
-        var response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdLabelId].delete();
+        http:Response response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdLabelId].delete();
         test:assertEquals(response1.statusCode, 204 , msg = "Association definition deletion failed");
     }
     lock {
-        var response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdInverseLabelId].delete();
+        http:Response response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdInverseLabelId].delete();
         test:assertEquals(response2.statusCode, 204, msg = "Association definition deletion failed");
     }
 }
@@ -165,7 +166,7 @@ isolated function testGetAssociationDefinitionConfigurations() returns error? {
 @test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
 isolated function testUpdateAssociationDefinitionConfigurations() returns error? {
     lock {
-        var response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload = {
+        BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload = {
             "inputs": [
                 {
                     "typeId": typeId,
@@ -182,7 +183,7 @@ isolated function testUpdateAssociationDefinitionConfigurations() returns error?
 //Test:Delete association definition configurations
 @test:Config {dependsOn: [testUpdateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
 isolated function testDeleteAssociationDefinitionConfigurations() returns error? {
-    var response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload = {
+    http:Response response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload = {
         "inputs": [
             {
                 "typeId": typeId,
@@ -199,7 +200,7 @@ isolated function testDeleteAssociationDefinitionConfigurations() returns error?
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testUpdateAssociationDefinitionsInvalidData() returns error? {
     lock {
-        var response = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload = {
+        http:Response response = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload = {
             "associationTypeId": -1, // Invalid associationTypeId
             "label": "" // Invalid empty label
         });
@@ -212,7 +213,7 @@ isolated function testUpdateAssociationDefinitionsInvalidData() returns error? {
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testCreateAssociationDefinitionConfigurationsInvalidData() returns error? {
     lock {
-        var response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload = {
+        BatchResponsePublicAssociationDefinitionUserConfiguration response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload = {
             "inputs": [
                 {
                     "typeId": -1, // Invalid associationTypeId
@@ -230,7 +231,7 @@ isolated function testCreateAssociationDefinitionConfigurationsInvalidData() ret
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testUpdateAssociationDefinitionConfigurationsInvalidId() returns error? {
     lock {
-        var response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload = {
+        BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload = {
             "inputs": [
                 {
                     "typeId": 5, //invalid type id for contact to deals association
@@ -247,7 +248,7 @@ isolated function testUpdateAssociationDefinitionConfigurationsInvalidId() retur
 //Test(negative): Delete association definition configuration with invalid data
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testDeleteAssociationDefinitionConfigurationsWithInvalidData() returns error? {
-    var response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload = {
+    http:Response response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload = {
         "inputs": [
             {
                 "typeId": 5, //invalid type id for contact to deals association
