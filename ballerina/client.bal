@@ -22,13 +22,24 @@ import ballerina/http;
 public isolated client class Client {
     final http:Client clientEp;
     final readonly & ApiKeysConfig? apiKeyConfig;
+
     # Gets invoked to initialize the `connector`.
     #
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
     # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com/crm/v4/associations") returns error? {
-        http:ClientConfiguration httpClientConfig = {httpVersion: config.httpVersion, timeout: config.timeout, forwarded: config.forwarded, poolConfig: config.poolConfig, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, validation: config.validation};
+    public isolated function init(ConnectionConfig config,
+            string serviceUrl = "https://api.hubapi.com/crm/v4/associations") returns error? {
+        http:ClientConfiguration httpClientConfig = {
+            httpVersion: config.httpVersion,
+            timeout: config.timeout,
+            forwarded: config.forwarded,
+            poolConfig: config.poolConfig,
+            compression: config.compression,
+            circuitBreaker: config.circuitBreaker,
+            retryConfig: config.retryConfig,
+            validation: config.validation
+        };
         do {
             if config.http1Settings is ClientHttp1Settings {
                 ClientHttp1Settings settings = check config.http1Settings.ensureType(ClientHttp1Settings);
@@ -65,8 +76,12 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function delete [string fromObjectType]/[string toObjectType]/labels/[int:Signed32 associationTypeId](map<string|string[]> headers = {}) returns http:Response|error {
-        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels/${getEncodedUri(associationTypeId)}`;
+    resource isolated function delete
+    [string fromObjectType]/[string toObjectType]/labels/[int:Signed32 associationTypeId]
+            (map<string|string[]> headers = {})
+    returns http:Response|error {
+        string resourcePath = string
+        `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels/${getEncodedUri(associationTypeId)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -80,7 +95,10 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function get [string fromObjectType]/[string toObjectType]/labels(map<string|string[]> headers = {}) returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
+    resource isolated function get
+    [string fromObjectType]/[string toObjectType]/labels
+            (map<string|string[]> headers = {})
+    returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
         string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
@@ -95,8 +113,12 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function get definitions/configurations/[string fromObjectType]/[string toObjectType](map<string|string[]> headers = {}) returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
-        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}`;
+    resource isolated function get
+    definitions/configurations/[string fromObjectType]/[string toObjectType]
+            (map<string|string[]> headers = {})
+    returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
+        string resourcePath = string
+        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -110,7 +132,10 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function get definitions/configurations/all(map<string|string[]> headers = {}) returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
+    resource isolated function get
+    definitions/configurations/all
+            (map<string|string[]> headers = {})
+    returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
         string resourcePath = string `/definitions/configurations/all`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
@@ -125,7 +150,10 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionCreateRequest payload, map<string|string[]> headers = {}) returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
+    resource isolated function post
+    [string fromObjectType]/[string toObjectType]/labels
+            (PublicAssociationDefinitionCreateRequest payload, map<string|string[]> headers = {})
+    returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
         string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
@@ -143,8 +171,13 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/create(BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload, map<string|string[]> headers = {}) returns BatchResponsePublicAssociationDefinitionUserConfiguration|BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors|error {
-        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/create`;
+    resource isolated function post
+    definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/create
+            (BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload, map<string|string[]> headers = {})
+    returns BatchResponsePublicAssociationDefinitionUserConfiguration|
+    BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors|error {
+        string resourcePath = string
+        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/create`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -161,8 +194,12 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge(BatchInputPublicAssociationSpec payload, map<string|string[]> headers = {}) returns http:Response|error {
-        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/purge`;
+    resource isolated function post
+    definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge
+            (BatchInputPublicAssociationSpec payload, map<string|string[]> headers = {})
+    returns http:Response|error {
+        string resourcePath = string
+        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/purge`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -179,8 +216,13 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update(BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload, map<string|string[]> headers = {}) returns BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors|error {
-        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/update`;
+    resource isolated function post
+    definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update
+            (BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload, map<string|string[]> headers = {})
+    returns BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|
+    BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors|error {
+        string resourcePath = string
+        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/update`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app"] = self.apiKeyConfig?.private\-app;
@@ -197,7 +239,10 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function put [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionUpdateRequest payload, map<string|string[]> headers = {}) returns http:Response|error {
+    resource isolated function put
+    [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionUpdateRequest payload,
+            map<string|string[]> headers = {})
+    returns http:Response|error {
         string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {

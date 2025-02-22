@@ -20,7 +20,8 @@ import ballerina/os;
 import ballerina/test;
 
 final boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
-final string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v4/associations" : "http://localhost:9090";
+final string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v4/associations" :
+    "http://localhost:9090";
 
 final string clientId = os:getEnv("HUBSPOT_CLIENT_ID");
 final string clientSecret = os:getEnv("HUBSPOT_CLIENT_SECRET");
@@ -36,7 +37,6 @@ final string labelToUpdate = "LabelNew";
 
 isolated int:Signed32 createdInverseLabelId = -1;
 isolated int:Signed32 createdLabelId = -1;
-
 final int:Signed32 typeId = 4; //association type id for contact to deals association
 
 //init client
@@ -74,15 +74,15 @@ isolated function testCreateAssociationDefinitions() returns error? {
             createdInverseLabelId = response.results[1].typeId;
         }
     }
-
-    test:assertTrue(response.results.length() > 0, msg = "No association definitions were created.");
-    test:assertEquals(response.results.length(), 2, msg = "Unexpected behavior on association definition creation.");
+    test:assertTrue(response.results.length() > 0, msg =
+            "No association definitions were created.");
+    test:assertEquals(response.results.length(), 2, msg =
+            "Unexpected behavior on association definition creation.");
 }
 
 //Test: Update association definitions
 @test:Config {dependsOn: [testCreateAssociationDefinitions], groups: ["live_test", "mock_test"]}
 isolated function testUpdateAssociationDefinitions() returns error? {
-
     int response1StatusCode = -1;
     int response2StatusCode = -1;
     lock {
@@ -90,21 +90,21 @@ isolated function testUpdateAssociationDefinitions() returns error? {
             associationTypeId: createdLabelId,
             label: labelToUpdate
         };
-
-        http:Response response1 = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
+        http:Response response1 =
+        check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
         response1StatusCode = response1.statusCode;
     }
-
     lock {
         PublicAssociationDefinitionUpdateRequest payload = {
             associationTypeId: createdInverseLabelId,
             label: labelToUpdate
         };
-        http:Response response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
+        http:Response response2 =
+        check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
         response2StatusCode = response2.statusCode;
     }
-
-    test:assertTrue(response1StatusCode == 204 || response2StatusCode == 204, msg = "Association label update failed for both createdLabelId and createdInverseLabelId");
+    test:assertTrue(response1StatusCode == 204 || response2StatusCode == 204,
+            msg = "Association label update failed for both createdLabelId and createdInverseLabelId");
 }
 
 //Test: Read association definitions
@@ -112,8 +112,10 @@ isolated function testUpdateAssociationDefinitions() returns error? {
 isolated function testGetAssociationDefinitions() returns error? {
     CollectionResponseAssociationSpecWithLabelNoPaging response =
         check hubspot->/[fromObjectType]/[toObjectType]/labels.get();
-    test:assertTrue(response.results.length() > 0, msg = "No definitions were returned");
-    test:assertEquals(response.results.length(), 2, msg = "Unexpected behavior on association definition retrieval.");
+    test:assertTrue(response.results.length() > 0,
+            msg = "No definitions were returned");
+    test:assertEquals(response.results.length(), 2,
+            msg = "Unexpected behavior on association definition retrieval.");
 }
 
 //Test: Delete association definitions
@@ -124,7 +126,8 @@ isolated function testDeleteAssociationDefinitions() returns error? {
         test:assertEquals(response1.statusCode, 204, msg = "Association definition deletion failed");
     }
     lock {
-        http:Response response2 = check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdInverseLabelId].delete();
+        http:Response response2 =
+            check hubspot->/[fromObjectType]/[toObjectType]/labels/[createdInverseLabelId].delete();
         test:assertEquals(response2.statusCode, 204, msg = "Association definition deletion failed");
     }
 }
@@ -144,9 +147,10 @@ isolated function testCreateAssociationDefinitionConfigurations() returns error?
     };
     CollectionResponseAssociationSpecWithLabelNoPaging response =
         check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload);
-
-    test:assertTrue(response.results.length() > 0, msg = "No definition configurations were created.");
-    test:assertEquals(response.results.length(), 1, msg = "Unexpected behavior on association definition configuration creation.");
+    test:assertTrue(response.results.length() > 0, msg =
+            "No definition configurations were created.");
+    test:assertEquals(response.results.length(), 1, msg =
+            "Unexpected behavior on definition configuration creation.");
 }
 
 //Test: Read ALL configurations
@@ -154,8 +158,10 @@ isolated function testCreateAssociationDefinitionConfigurations() returns error?
 isolated function testGetAllDefinitionsConfigurations() returns error? {
     CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
         check hubspot->/definitions/configurations/all.get();
-    test:assertTrue(response.results.length() > 0, msg = "No configurations were returned.");
-    test:assertEquals(response.results.length(), 2, msg = "Unexpected behavior on all configurations retrieval.");
+    test:assertTrue(response.results.length() > 0,
+            msg = "No configurations were returned.");
+    test:assertEquals(response.results.length(), 2,
+            msg = "Unexpected behavior on all configurations retrieval.");
 }
 
 //Test: Read association definition configurations
@@ -163,26 +169,28 @@ isolated function testGetAllDefinitionsConfigurations() returns error? {
 isolated function testGetAssociationDefinitionConfigurations() returns error? {
     CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
         check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType].get();
-    test:assertTrue(response.results.length() > 0, msg = "No  association definition configurations were returned.");
+    test:assertTrue(response.results.length() > 0, msg =
+            "No  association definition configurations were returned.");
 }
 
 //Test: Update configurations
 @test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
 isolated function testUpdateAssociationDefinitionConfigurations() returns error? {
-    lock {
-        BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload = {
-            inputs: [
-                {
-                    typeId: typeId,
-                    category: "HUBSPOT_DEFINED",
-                    maxToObjectIds: 11
-                }
-            ]
-        };
-        BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload);
-        test:assertTrue(response.results.length() > 0, msg = "Failed to update association definition configuration.");
-        test:assertEquals(response.status, "COMPLETE", msg = "Unexpected behavior for association definition configuration update.");
-    }
+    BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload = {
+        inputs: [
+            {
+                typeId: typeId,
+                category: "HUBSPOT_DEFINED",
+                maxToObjectIds: 11
+            }
+        ]
+    };
+    BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response =
+        check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload);
+    test:assertTrue(response.results.length() > 0,
+            msg = "Failed to update association definition configuration.");
+    test:assertEquals(response.status, "COMPLETE",
+            msg = "Unexpected behavior for definition configuration update.");
 }
 
 //Test:Delete association definition configurations
@@ -196,62 +204,58 @@ isolated function testDeleteAssociationDefinitionConfigurations() returns error?
             }
         ]
     };
-    http:Response response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload);
+    http:Response response =
+    check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload);
 
-    test:assertEquals(response.statusCode, 204, msg = "Unexpected behavior for association definition configuration deletion.");
+    test:assertEquals(response.statusCode, 204,
+            msg = "Unexpected behavior for definition configuration deletion.");
 }
 
 //negative test cases
 //Test(negative): Update association definition with invalid data
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testUpdateAssociationDefinitionsInvalidData() returns error? {
-    lock {
-        PublicAssociationDefinitionUpdateRequest payload = {
-            associationTypeId: -1, // Invalid associationTypeId
-            label: "" // Invalid empty label
-        };
-        http:Response response = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
-
-        test:assertEquals(response.statusCode, 400, msg = "Unexpected behavior for invalid data.");
-    }
+    PublicAssociationDefinitionUpdateRequest payload = {
+        associationTypeId: -1, // Invalid associationTypeId
+        label: "" // Invalid empty label
+    };
+    http:Response response = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
+    test:assertEquals(response.statusCode, 400, msg = "Unexpected behavior for invalid data.");
 }
 
 //Test(negative): Create association definition configuration with invalid data
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testCreateAssociationDefinitionConfigurationsInvalidData() returns error? {
-    lock {
-        BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload = {
-            inputs: [
-                {
-                    typeId: -1, // Invalid associationTypeId
-                    category: "HUBSPOT_DEFINED",
-                    maxToObjectIds: 2
-                }
-            ]
-        };
-        BatchResponsePublicAssociationDefinitionUserConfiguration response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload);
-
-        test:assertEquals(response.status, "CANCELED", msg = "Unexpected behavior for invalid data.");
-    }
+    BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload = {
+        inputs: [
+            {
+                typeId: -1, // Invalid associationTypeId
+                category: "HUBSPOT_DEFINED",
+                maxToObjectIds: 2
+            }
+        ]
+    };
+    BatchResponsePublicAssociationDefinitionUserConfiguration response =
+        check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload);
+    test:assertEquals(response.status, "CANCELED", msg = "Unexpected behavior for invalid data.");
 }
 
 //Test(negative): Update association definition configuration with invalid data
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testUpdateAssociationDefinitionConfigurationsInvalidId() returns error? {
-    lock {
-        BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload = {
-            inputs: [
-                {
-                    typeId: 5, //invalid type id for contact to deals association
-                    category: "USER_DEFINED",
-                    maxToObjectIds: 5
-                }
-            ]
-        };
-        BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload);
-
-        test:assertEquals(response.status, "CANCELED", msg = "Unexpected behavior for invalid association type id.");
-    }
+    BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload = {
+        inputs: [
+            {
+                typeId: 5, //invalid type id for contact to deals association
+                category: "USER_DEFINED",
+                maxToObjectIds: 5
+            }
+        ]
+    };
+    BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response =
+        check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload);
+    test:assertEquals(response.status, "CANCELED",
+            msg = "Unexpected behavior for invalid association type id.");
 }
 
 //Test(negative): Delete association definition configuration with invalid data
@@ -265,7 +269,8 @@ isolated function testDeleteAssociationDefinitionConfigurationsWithInvalidData()
             }
         ]
     };
-    http:Response response = check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload);
-
-    test:assertTrue(response.statusCode == 207 || response.statusCode == 400, msg = "Unexpected behavior for invalid association type id.");
+    http:Response response =
+    check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/purge.post(payload);
+    test:assertTrue(response.statusCode == 207 || response.statusCode == 400,
+            msg = "Unexpected behavior for invalid association type id.");
 }
