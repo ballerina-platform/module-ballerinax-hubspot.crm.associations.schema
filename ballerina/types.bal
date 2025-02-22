@@ -33,7 +33,7 @@ public type BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors 
 public type PublicAssociationDefinitionCreateRequest record {
     string inverseLabel?;
     string name;
-    string label;
+    string? label;
 };
 
 public type StandardError record {
@@ -98,7 +98,7 @@ public type ProxyConfig record {|
 public type PublicAssociationDefinitionUpdateRequest record {
     string inverseLabel?;
     int:Signed32 associationTypeId;
-    string label;
+    string? label;
 };
 
 public type ErrorDetail record {
@@ -116,7 +116,7 @@ public type ErrorDetail record {
 
 public type AssociationSpecWithLabel record {
     int:Signed32 typeId;
-    string label?;
+    string? label?;
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
@@ -125,9 +125,9 @@ public type CollectionResponseAssociationSpecWithLabelNoPaging record {
 };
 
 public type PublicAssociationDefinitionUserConfiguration record {
-    int:Signed32 userEnforcedMaxToObjectIds?;
+    int:Signed32? userEnforcedMaxToObjectIds?;
     int:Signed32 typeId;
-    string label?;
+    string? label?;
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
