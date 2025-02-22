@@ -47,15 +47,16 @@ These changes are done in order to improve the overall usability, and as workaro
 
   ```json
     "PublicAssociationDefinitionUserConfiguration" : {
-        "properties" : {
-          "userEnforcedMaxToObjectIds" : {
-            "type" : "integer",
-            "format" : "int32",
-          },
-          "label" : {
-            "type" : "string"
-          }
-    }}
+      "properties" : {
+        "userEnforcedMaxToObjectIds" : {
+          "type" : "integer",
+          "format" : "int32",
+        },
+        "label" : {
+          "type" : "string"
+        }
+      }
+    }
   ```
 
 - **Updated**:
@@ -72,7 +73,8 @@ These changes are done in order to improve the overall usability, and as workaro
             "type" : "string",
             "nullable": true
           }
-     }}
+       }
+     }
   ```
 
 - **Reason**: The properties `userEnforcedMaxToObjectIds` and `label` are updated to be nullable, meaning they can either hold their respective values or be null, to fix a payload binding error.
@@ -130,7 +132,7 @@ These changes are done in order to improve the overall usability, and as workaro
             "nullable":true
           }
         }
-    }
+      }
   ```
 
 - **Reason**: The property `label` is updated to be nullable, meaning it can either hold its respective values or be null, to fix a payload binding error.
