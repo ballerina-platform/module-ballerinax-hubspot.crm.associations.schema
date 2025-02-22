@@ -9,7 +9,7 @@ This document records the sanitation done on top of the official OpenAPI specifi
 The OpenAPI specification is obtained from [Hubspot API Reference](https://github.com/HubSpot/HubSpot-public-api-spec-collection/blob/main/PublicApiSpecs/CRM/Associations%20Schema/Rollouts/130902/v4/associationsSchema.json).
 These changes are done in order to improve the overall usability, and as workarounds for some known language limitations.
 
-1. Change the `url` property of the servers object
+1. Changed the `url` property of the servers object
 
 - **Original**:
 `https://api.hubspot.com`
@@ -19,38 +19,48 @@ These changes are done in order to improve the overall usability, and as workaro
 
 - **Reason**: This change of adding the common prefix `crm/v4/associations` to the base url makes it easier to access endpoints using the client and also eliminates redundancy.
 
-2. Update the API Paths
+2. Updated the API Paths
 
 - **Original**: Paths included common prefix above in each endpoint. (eg: `/crm/v4/associations`)
 - **Updated**: Common prefix is now removed from the endpoints as it is included in the base URL.
 - **Reason**: This change simplifies the API paths, making them shorter and more readable.
 
-3. Update the `date-time` into `datetime` to make it compatible with the Ballerina type conversions.
-
-- **Original**: `"format": "date-time"`
-- **Updated**: `"format": "datetime"`
-- **Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
-
-4. Make `"label"`,`"userEnforcedMaxToObjectIds"` properties in `"PublicAssociationDefinitionUserConfiguration"` object nullable
+3. Updated the `date-time` into `datetime` to make it compatible with the Ballerina type conversions.
 
 - **Original**:
+
+  ```json
+    { "format" : "date-time" }
+  ```
+
+- **Updated**:
+
+  ```json
+    { "format" : "datetime" }
+  ```
+
+- **Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
+
+4. Updated the `label` and `userEnforcedMaxToObjectIds` properties in `PublicAssociationDefinitionUserConfiguration` to support nullable values.
+
+- **Original**:
+
+  ```json
     "PublicAssociationDefinitionUserConfiguration" : {
-        ...
         "properties" : {
           "userEnforcedMaxToObjectIds" : {
             "type" : "integer",
             "format" : "int32",
           },
-         .
-         .
           "label" : {
             "type" : "string"
-          },
-          .
-          .
-    }},
+          }
+    }}
+  ```
 
 - **Updated**:
+
+  ```json
      "PublicAssociationDefinitionUserConfiguration" : {
         "properties" : {
           "userEnforcedMaxToObjectIds" : {
@@ -58,114 +68,101 @@ These changes are done in order to improve the overall usability, and as workaro
             "format" : "int32",
             "nullable": true
           },
-         .
-         .
           "label" : {
             "type" : "string",
             "nullable": true
-          },
-          .
-          .
-     }},
+          }
+     }}
+  ```
 
-- **Reason**: The properties `"userEnforcedMaxToObjectIds"` and `"label"` are updated to be nullable, meaning they can either hold their respective values or be null, to fix payload binding error.
+- **Reason**: The properties `userEnforcedMaxToObjectIds` and `label` are updated to be nullable, meaning they can either hold their respective values or be null, to fix a payload binding error.
 
-5. Make `"label"` property in `"PublicAssociationDefinitionCreateRequest"` object nullable
+5. Updated the `label` property in `PublicAssociationDefinitionCreateRequest` to suppoert nullable values.
 
-- **Original**:  
+- **Original**:
+
+  ```json
      "PublicAssociationDefinitionCreateRequest" : {
-        .
-        .
         "properties" : {
-          .
-          .
-          "label" : {
+        "label" : {
             "type" : "string"
           }
         }
-      },
+      }
+  ```
 
 - **Updated**:
+
+  ```json
      "PublicAssociationDefinitionCreateRequest" : {
-        .
-        .
         "properties" : {
-          .
-          .
           "label" : {
             "type" : "string",
             "nullable": true
           }
         }
-      },
+      }
+  ```
 
-- **Reason**: The property `"label"` is updated to be nullable, meaning it can either hold its respective values or be null, to fix payload binding error.
+- **Reason**: The property `label` is updated to be nullable, meaning it can either hold its respective values or be null, to fix a payload binding error.
 
-6. Make `"label"` property in `"AssociationSpecWithLabel"` object nullable
+6. Updated the `label` property in `AssociationSpecWithLabel` to support nullable values
 
 - **Original**:  
+
+  ```json
       "AssociationSpecWithLabel" : {
-        .
-        .
         "properties" : {
-          .
-          .
           "label" : {
             "type" : "string"
-          },
-          .
-          .
+          }
         }
-      },
+      }
+  ```
 
 - **Updated**:
+
+  ```json
       "AssociationSpecWithLabel" : {
-        .
-        .
         "properties" : {
-          .
-          .
           "label" : {
             "type" : "string",
             "nullable":true
-          },
-          .
-          .
+          }
         }
-      },
+    }
+  ```
 
-- **Reason**: The property `"label"` is updated to be nullable, meaning it can either hold its respective values or be null, to fix payload binding error.
+- **Reason**: The property `label` is updated to be nullable, meaning it can either hold its respective values or be null, to fix a payload binding error.
 
-7. Make `"label"` property in `"PublicAssociationDefinitionUpdateRequest"` onject nullable
+7. Updated the `label` property in `PublicAssociationDefinitionUpdateRequest` to support nullable values.
 
-- **Original**:  
+- **Original**:
+
+  ```json
       "PublicAssociationDefinitionUpdateRequest" : {
-        .
-        .
         "properties" : {
-          .
-          .
           "label" : {
             "type" : "string"
           }
         }
-      },
+      }
+  ```
 
 - **Updated**:
+
+  ```json
       "PublicAssociationDefinitionUpdateRequest" : {
-        .
-        .
         "properties" : {
-          .
-          .
           "label" : {
             "type" : "string",
             "nullable": true
           }
         }
-      },
+      }
+  ```
 
-- **Reason**: The property `"label"` is updated to be nullable, meaning it can either hold its respective values or be null, to fix payload binding error.
+- **Reason**: The property `label` is updated to be nullable, meaning it can either hold its respective values or be null, to fix a payload binding error.
 
 ## OpenAPI cli command
 
