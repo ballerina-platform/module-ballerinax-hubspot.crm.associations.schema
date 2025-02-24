@@ -1,4 +1,3 @@
-
 ## Overview
 
 [HubSpot ](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
