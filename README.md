@@ -22,7 +22,7 @@ If you don't have a HubSpot Developer Account you can sign up to a free account 
 
 If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
-### Step 2: Create a Developer Test Account under your account(optional)
+### Step 2: Create a developer test account under your account(optional)
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
@@ -71,7 +71,7 @@ Within app developer accounts, you can create [developer test accounts](https://
 
    ![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/redirect-url.png)
 
-### Step 5: Get the client ID and client Secret
+### Step 5: Get the client ID and client secret
 
 Navigate to the `Auth` tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
 ![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
@@ -141,6 +141,8 @@ Replace the `<YOUR_REFRESH_TOKEN>` ,`<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>
 
    **Linux/macOS (Bash)**
 
+   Use the following `curl` command in your terminal:
+
    ```bash
    curl --request POST \
    --url https://api.hubapi.com/oauth/v1/token \
@@ -149,6 +151,8 @@ Replace the `<YOUR_REFRESH_TOKEN>` ,`<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>
    ```
 
    **Windows (CMD)**
+
+   Use the following `curl` command in your command prompt:
 
    ```bash
    curl --request POST ^
@@ -159,16 +163,15 @@ Replace the `<YOUR_REFRESH_TOKEN>` ,`<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>
 
 ## Quickstart
 
-To use the `Hubspot CRM Association Schema` connector in your Ballerina application, update the `.bal` file as follows:
+To use the `Hubspot CRM Associations Schema` connector in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
 
-Import the `hubspot.crm.association.schema` module and `oauth2` module.
-
+Import the `hubspot.crm.associations.schema` module and `oauth2` module.
 
    ```ballerina
    import ballerina/oauth2;
-   import ballerinax/hubspot.crm.association.schema as hsAssociationSchema;
+   import ballerinax/hubspot.crm.associations.schema as hsAssociationSchema;
    ```
 
 ### Step 2: Instantiate a new connector
@@ -204,13 +207,13 @@ Now, utilize the available connector operations. A sample usecase is shown below
 
 #### Read all association definitions from objects contact to deals
 
-```ballerina
-public function main() returns error? {
-    hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
-        check hubspot->/contacts/deals/labels.get();
-    io:println("Contact-Deal Association definitions: ", associations);
-}
-```
+   ```ballerina
+   public function main() returns error? {
+      hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
+         check hubspot->/contacts/deals/labels.get();
+      io:println("Contact-Deal Association definitions: ", associations);
+   }
+   ```
 
 ## Examples
 
