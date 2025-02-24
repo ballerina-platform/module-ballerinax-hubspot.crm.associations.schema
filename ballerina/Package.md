@@ -8,13 +8,13 @@ The `ballerinax/module-ballerinax-hubspot.crm.associations.schema` connector off
 
 To use the HubSpot Association-Schema connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
 
-### Step 1: Create/Login to a HubSpot Developer Account
-
-If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
+### Step 1: Login to a HubSpot developer account
 
 If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
 
-### Step 2 (Optional): Create a Developer Test Account under your account
+If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
+
+### Step 2: Create a Developer Test Account under your account(optional)
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
@@ -126,10 +126,10 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 5. Store the refresh token securely for use in your application.
 
-6. If you are using tools (e.g., Postman, Insomnia) or need to manually refresh the token for testing, run the following `curl` command to refresh the access token when it expires, make a POST request to the HubSpot OAuth endpoint.
+6. If you are using testing tools (e.g., Postman, Insomnia) or need to manually refresh the token for testing, run the following `curl` command to refresh the access token when it expires, make a POST request to the HubSpot OAuth endpoint.
 Replace the `<YOUR_REFRESH_TOKEN>` ,`<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>` with your specific value.
 
-      - macOS/Linux
+      - MacOS/Linux
 
       ```bash
       curl --request POST \
@@ -138,7 +138,7 @@ Replace the `<YOUR_REFRESH_TOKEN>` ,`<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>
       --data 'grant_type=refresh_token&refresh_token=<YOUR_REFRESH_TOKEN>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
       ```
 
-      - windows
+      - Windows
 
       ```bash
       curl --request POST ^
