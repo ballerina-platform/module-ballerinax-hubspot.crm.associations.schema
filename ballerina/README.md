@@ -31,7 +31,7 @@ Within app developer accounts, you can create [developer test accounts](https://
    You will see the newly created test account in the list of test accounts.
    ![Test account portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account-portal.png)
 
-### Step 3: Create a HubSpot App
+### Step 3: Create a HubSpot app
 
 1. Navigate to the `Apps` section in the left sidebar and click on the `Create app` button in the top right corner.
    ![Create app](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-app.png)
@@ -39,7 +39,7 @@ Within app developer accounts, you can create [developer test accounts](https://
 2. Provide a public app name and description for your app.
    ![App name and description](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/app-name-desc.png)
 
-### Step 4: Setup Authentication
+### Step 4: Setup authentication
 
 1. Move to the `Auth` tab.
    ![Configure authentication](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/config-auth.png)
@@ -63,7 +63,7 @@ Within app developer accounts, you can create [developer test accounts](https://
 
    ![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/redirect-url.png)
 
-### Step 5: Get the Client ID and Client Secret
+### Step 5: Get the client ID and client Secret
 
 Navigate to the `Auth` tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
 ![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
@@ -85,9 +85,10 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 3. A code will be displayed in the browser. Copy the code.
 
-4. Run the following curl command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the `<CODE>`.
+4. Run the following `curl` command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the `<CODE>`.
 
    **Linux/macOS (Bash)**
+
    Use the following `curl` command in your terminal:
 
    ```bash
@@ -101,6 +102,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
    ```
 
    **Windows (CMD)**
+
    Use the following `curl` command in Command Prompt:
 
    ```bash
