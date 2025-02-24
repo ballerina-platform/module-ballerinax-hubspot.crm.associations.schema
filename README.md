@@ -12,8 +12,6 @@
 
 The `ballerinax/module-ballerinax-hubspot.crm.associations.schema` connector offers APIs to connect and interact with the [Hubspot Associations Schema API](https://developers.hubspot.com/docs/reference/api/crm/associations/associations-schema) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api).
 
-> **Note:** This package may be changed in the future based on the HubSpot API changes, since it is currently under development and is subject to change based on testing and feedback. By using this package, you are agreeing to accept any future changes that might occur and understand the risk associated with testing an unstable API. Refer to the [HubSpot Developer Terms](https://legal.hubspot.com/developer-terms) & [Developer Beta Terms](https://legal.hubspot.com/developerbetaterms) for more information.
-
 ## Setup guide
 
 To use the HubSpot Association-Schema connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
@@ -125,14 +123,14 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
    This command will return the access token and refresh token which are necessary for API calls.
 
-   ```json
-   {
-     "token_type": "bearer",
-     "refresh_token": "<Refresh Token>",
-     "access_token": "<Access Token>",
-     "expires_in": 1800
-   }
-   ```
+      ```json
+      {
+      "token_type": "bearer",
+      "refresh_token": "<Refresh Token>",
+      "access_token": "<Access Token>",
+      "expires_in": 1800
+      }
+      ```
 
 5. Store the refresh token securely for use in your application.
 
@@ -188,16 +186,14 @@ import ballerina/oauth2;
     configurable string clientSecret = ?;
     configurable string refreshToken = ?;
 
-    hsAssociationSchema:ConnectionConfig config = {
-        auth: {
-            clientId,
-            clientSecret,
-            refreshToken,
-            credentialBearer: oauth2:POST_BODY_BEARER
-        }
-    };
+   hsAssociationSchema:OAuth2RefreshTokenGrantConfig auth = {
+      clientId,
+      clientSecret,
+      refreshToken,
+      credentialBearer: oauth2:POST_BODY_BEARER
+   };
 
-    final hsfeedback:Client baseClient = check new (config);
+   final hsAssociationSchema:Client hubspot = check new ({ auth });
     ```
 
 ### Step 3: Invoke the connector operation
@@ -209,8 +205,8 @@ Now, utilize the available connector operations. A sample usecase is shown below
 ```ballerina
 public function main() returns error? {
     hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
-        check baseClient->/contacts/deals/labels;
-    io:println("Contact-Deal Associations: ", associations);
+        check hubspot->/contacts/deals/labels;
+    io:println("Contact-Deal Association definitions: ", associations);
 }
 ```
 
