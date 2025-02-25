@@ -1,6 +1,6 @@
+import ballerina/io;
 import ballerina/oauth2;
 import ballerinax/hubspot.crm.associations.schema as hsAssociationSchema;
-import ballerina/io;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -12,17 +12,18 @@ hsAssociationSchema:OAuth2RefreshTokenGrantConfig auth = {
     refreshToken: refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
-final hsAssociationSchema:Client hubspot = check new ({ auth });
+final hsAssociationSchema:Client hubspot = check new ({auth});
 
 // Function to count different categories of configurations
 function configurationsAnalysis() {
-    hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getAllResponse =  hubspot->/definitions/configurations/all.get();
+    hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getAllResponse =
+        hubspot->/definitions/configurations/all.get();
     if getAllResponse is hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging {
         int hubspotDefined = 0;
         int userDefined = 0;
         int integratorDefined = 0;
         int total = getAllResponse.results.length();
-        
+
         foreach var config in getAllResponse.results {
             match config.category {
                 "HUBSPOT_DEFINED" => {
@@ -34,7 +35,8 @@ function configurationsAnalysis() {
                 "INTEGRATOR_DEFINED" => {
                     integratorDefined += 1;
                 }
-                _ => {}
+                _ => {
+                }
             }
         }
         io:println("Total Configurations: ", total);
@@ -48,13 +50,14 @@ function configurationsAnalysis() {
 
 // Function to count different categories of definitions
 function definitionsAnalysis(string fromObjectType, string toObjectType) {
-    hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging|error getAssociationsResponse = hubspot->/[fromObjectType]/[toObjectType]/labels.get();
+    hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging|error getAssociationsResponse =
+        hubspot->/[fromObjectType]/[toObjectType]/labels.get();
     if getAssociationsResponse is hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging {
         int hubspotDefined = 0;
         int userDefined = 0;
         int integratorDefined = 0;
         int total = getAssociationsResponse.results.length();
-        
+
         foreach var config in getAssociationsResponse.results {
             match config.category {
                 "HUBSPOT_DEFINED" => {
@@ -66,7 +69,8 @@ function definitionsAnalysis(string fromObjectType, string toObjectType) {
                 "INTEGRATOR_DEFINED" => {
                     integratorDefined += 1;
                 }
-                _ => {}
+                _ => {
+                }
             }
         }
         io:println("\nTotal Association Definitions: ", total);

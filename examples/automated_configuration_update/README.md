@@ -1,6 +1,6 @@
 # [Automated Configuration Update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automate_configuration_update)
 
-This example demonstrates how to use the HubSpot CRM Associations Schema API to manage the number of patients Associatied with a Doctor in a Doctor_Patient association when the user changes the currrent status ('Pandemic','Emergency','Normal' or 'Special'). It includes creating, updating and then reading association definitions.
+This example demonstrates how to use the HubSpot CRM Associations Schema API to manage the number of patients associated with a doctor in a Doctor_Patient association when the user changes the currrent status ('Pandemic', 'Emergency', 'Normal' or 'Special'). It includes creating, updating and then reading association definitions.
 
 ## Prerequisites
 
