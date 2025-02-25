@@ -1,6 +1,6 @@
 # [Companies Association Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management)
 
-This example demonstrates how to use the HubSpot CRM Associations Schema API to manage association definitions between different object types in HubSpot. Specifically from object type `companies` to object type `companies` , creating a custom association named Headquarters-Franchise is demonstrated. It includes reading, creating, updating, and deleting association definitions to structure relationships effectively within the CRM system.
+This example illustrates how to manage associations between `companies` object types within HubSpot using the Associations Schema API. It demonstrates the creation of a custom `Headquarters-Franchise` association, along with the ability to read, update, and delete these definitions. This structured approach enhances relationship mapping and organization within the CRM.
 
 ## Prerequisites
 
