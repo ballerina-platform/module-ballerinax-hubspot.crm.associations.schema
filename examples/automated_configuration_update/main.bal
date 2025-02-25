@@ -147,8 +147,11 @@ public function main() returns error? {
 
     // Periodically check for status changes and update configuration
     while true {
-        io:println("Enter status (1: NORMAL, 2: SPECIAL, 3: EMERGENCY, 4: PANDEMIC): ");
+        io:println("Enter status (1: NORMAL, 2: SPECIAL, 3: EMERGENCY, 4: PANDEMIC) or x: exit: ");
         string? input = io:readln();
+        if input == "x" || input == "X" {
+            break;
+        }
         match input {
             "1" => {
                 newStatus = "NORMAL";

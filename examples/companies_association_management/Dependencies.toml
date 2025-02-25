@@ -9,7 +9,7 @@ distribution-version = "2201.11.0"
 
 [[package]]
 org = "aaishah_hamdha"
-name = "headquarters_franchise_association_management"
+name = "companies_association_management"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "http"},
@@ -19,7 +19,7 @@ dependencies = [
 	{org = "ballerinax", name = "hubspot.crm.associations.schema"}
 ]
 modules = [
-	{org = "aaishah_hamdha", packageName = "headquarters_franchise_association_management", moduleName = "headquarters_franchise_association_management"}
+	{org = "aaishah_hamdha", packageName = "companies_association_management", moduleName = "companies_association_management"}
 ]
 
 [[package]]

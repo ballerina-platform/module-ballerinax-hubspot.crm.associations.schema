@@ -9,7 +9,7 @@ distribution-version = "2201.11.0"
 
 [[package]]
 org = "aaishah_hamdha"
-name = "dynamic_maxobject_configuration"
+name = "automated_configuration_update"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "io"},
@@ -18,7 +18,7 @@ dependencies = [
 	{org = "ballerinax", name = "hubspot.crm.associations.schema"}
 ]
 modules = [
-	{org = "aaishah_hamdha", packageName = "dynamic_maxobject_configuration", moduleName = "dynamic_maxobject_configuration"}
+	{org = "aaishah_hamdha", packageName = "automated_configuration_update", moduleName = "automated_configuration_update"}
 ]
 
 [[package]]

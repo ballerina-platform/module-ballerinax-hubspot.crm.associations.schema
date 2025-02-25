@@ -35,7 +35,7 @@ function createAssociationDefinition
 
 // Main function 
 public function main() returns error? {
-    io:println("Creating Doctor_Patient company association...\n\n");
+    io:println("Creating Doctor_Patient association...\n\n");
 
     final string fromObjectType = "contacts";
     final string toObjectType = "contacts";
