@@ -1,14 +1,6 @@
-# Examples
+# [Association Analytics](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics)
 
-The `ballerinax/hubspot.crm.associations.schema` connector provides practical examples illustrating usage in various scenarios.
-
-1. [Association Analytics Report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics_report)
-
-2. [Automated Configuration Update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automated_configuration_update)
-
-3. [Companies Association Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management)
-
-4. [Custom Association For Hospital System](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system)
+This example demonstrates how to use the HubSpot CRM Associations Schema API to analyze the number of association definition configurations between different object types in HubSpot. Specifically, it analyzes associations from object type `contacts` to object type `deals` in this implementation. The example includes reading and categorizing association definitions based on their category (`HubSpot Defined`, `User Defined`, and `Integrator Defined`) and generating a report of their count.
 
 ## Prerequisites
 
