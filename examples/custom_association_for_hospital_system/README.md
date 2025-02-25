@@ -1,4 +1,4 @@
-# [Custom Association for a Hospital System](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system)
+# Custom association for a hospital system
 
 This example explores how to establish custom associations within a hospital CRM using the HubSpot CRM Associations Schema API. It specifically demonstrates how to define and manage a `Doctor-Patient` association between `contacts` object type, enabling more efficient organization of medical relationships. The implementation covers `creating a custom association definition` for streamlined healthcare data management.
 

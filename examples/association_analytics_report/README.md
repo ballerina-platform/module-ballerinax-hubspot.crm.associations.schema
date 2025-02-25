@@ -1,4 +1,4 @@
-# [Association Definition Analytics Report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics)
+# Association definition analytics report
 
 This example showcases how to use the HubSpot CRM Associations Schema API to analyze association definitions between different object types. Specifically, it evaluates associations between the object types`contacts` and `deals`, categorizing them into `HubSpot Defined`, `User Defined`, and `Integrator Defined`. The implementation extracts and reports the number of associations in each category, providing valuable insights into how relationships are structured in the CRM.
 
