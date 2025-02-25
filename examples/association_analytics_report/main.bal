@@ -1,24 +1,24 @@
 import ballerina/io;
 import ballerina/oauth2;
-import ballerinax/hubspot.crm.associations.schema as hsAssociationSchema;
+import ballerinax/hubspot.crm.associations.schema as hsschema;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
-hsAssociationSchema:OAuth2RefreshTokenGrantConfig auth = {
+hsschema:OAuth2RefreshTokenGrantConfig auth = {
     clientId: clientId,
     clientSecret: clientSecret,
     refreshToken: refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
-final hsAssociationSchema:Client hubspot = check new ({auth});
+final hsschema:Client hubspot = check new ({auth});
 
 // Function to count different categories of configurations
 function configurationsAnalysis() {
-    hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getAllResponse =
+    hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getAllResponse =
         hubspot->/definitions/configurations/all.get();
-    if getAllResponse is hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging {
+    if getAllResponse is hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging {
         int hubspotDefined = 0;
         int userDefined = 0;
         int integratorDefined = 0;
@@ -50,9 +50,9 @@ function configurationsAnalysis() {
 
 // Function to count different categories of definitions
 function definitionsAnalysis(string fromObjectType, string toObjectType) {
-    hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging|error getAssociationsResponse =
+    hsschema:CollectionResponseAssociationSpecWithLabelNoPaging|error getAssociationsResponse =
         hubspot->/[fromObjectType]/[toObjectType]/labels.get();
-    if getAssociationsResponse is hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging {
+    if getAssociationsResponse is hsschema:CollectionResponseAssociationSpecWithLabelNoPaging {
         int hubspotDefined = 0;
         int userDefined = 0;
         int integratorDefined = 0;

@@ -1,23 +1,23 @@
 import ballerina/http;
 import ballerina/io;
 import ballerina/oauth2;
-import ballerinax/hubspot.crm.associations.schema as hsAssociationSchema;
+import ballerinax/hubspot.crm.associations.schema as hsschema;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
-hsAssociationSchema:OAuth2RefreshTokenGrantConfig auth = {
+hsschema:OAuth2RefreshTokenGrantConfig auth = {
     clientId: clientId,
     clientSecret: clientSecret,
     refreshToken: refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
-final hsAssociationSchema:Client hubspot = check new ({auth});
+final hsschema:Client hubspot = check new ({auth});
 
 // Function to create the association definition payload for Create endpoint
 function createAssociationDefinitionCreatePayload(string name, string label, string inverseLabel)
-        returns hsAssociationSchema:PublicAssociationDefinitionCreateRequest {
+        returns hsschema:PublicAssociationDefinitionCreateRequest {
     return {
         inverseLabel: inverseLabel,
         name: name,
@@ -27,7 +27,7 @@ function createAssociationDefinitionCreatePayload(string name, string label, str
 
 // Function to create the association definition payload for update endpoint
 function createAssociationDefinitionUpdatePayload(int:Signed32 associationId, string label, string inverseLabel)
-        returns hsAssociationSchema:PublicAssociationDefinitionUpdateRequest {
+        returns hsschema:PublicAssociationDefinitionUpdateRequest {
     return {
         inverseLabel: inverseLabel,
         associationTypeId: associationId,
@@ -37,16 +37,16 @@ function createAssociationDefinitionUpdatePayload(int:Signed32 associationId, st
 
 // Function to create the association definition
 function createAssociationDefinition
-        (hsAssociationSchema:PublicAssociationDefinitionCreateRequest payload, string fromObjectType, string toObjectType)
-        returns hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging|error {
-    hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging response =
+        (hsschema:PublicAssociationDefinitionCreateRequest payload, string fromObjectType, string toObjectType)
+        returns hsschema:CollectionResponseAssociationSpecWithLabelNoPaging|error {
+    hsschema:CollectionResponseAssociationSpecWithLabelNoPaging response =
         check hubspot->/[fromObjectType]/[toObjectType]/labels.post(payload);
     return response;
 }
 
 // Function to update the association definition
 function updateAssociationDefinition
-        (hsAssociationSchema:PublicAssociationDefinitionUpdateRequest payload, string fromObjectType, string toObjectType)
+        (hsschema:PublicAssociationDefinitionUpdateRequest payload, string fromObjectType, string toObjectType)
         returns http:Response|error {
     http:Response response =
         check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
@@ -75,16 +75,16 @@ public function main() returns error? {
     int:Signed32 inverseAssociationId = -1;
 
     // Create the association definition payload to create
-    hsAssociationSchema:PublicAssociationDefinitionCreateRequest CreatePayload =
+    hsschema:PublicAssociationDefinitionCreateRequest CreatePayload =
         createAssociationDefinitionCreatePayload(labelName, label, inverseLabel);
 
     // Create the association definition
-    hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging createdAssociationDefinition =
+    hsschema:CollectionResponseAssociationSpecWithLabelNoPaging createdAssociationDefinition =
         check createAssociationDefinition(CreatePayload, fromObjectType, toObjectType);
     io:println("Association label created successfully\n");
 
     //Read association definitions
-    hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging associationDefinitions =
+    hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associationDefinitions =
         check hubspot->/[fromObjectType]/[toObjectType]/labels.get();
     io:println("Association definitions read: \n", associationDefinitions, "\n");
 
@@ -93,7 +93,7 @@ public function main() returns error? {
     inverseAssociationId = createdAssociationDefinition.results[1].typeId;
 
     // Create the association definition payload to update
-    hsAssociationSchema:PublicAssociationDefinitionUpdateRequest UpdatePayload =
+    hsschema:PublicAssociationDefinitionUpdateRequest UpdatePayload =
         createAssociationDefinitionUpdatePayload(associationId, newLabel, newInverseLabel);
 
     // Update the association definition

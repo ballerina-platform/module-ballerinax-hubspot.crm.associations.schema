@@ -171,7 +171,7 @@ Import the `hubspot.crm.associations.schema` module and `oauth2` module.
 
    ```ballerina
    import ballerina/oauth2;
-   import ballerinax/hubspot.crm.associations.schema as hsAssociationSchema;
+   import ballerinax/hubspot.crm.associations.schema as hsschema;
    ```
 
 ### Step 2: Instantiate a new connector
@@ -184,21 +184,21 @@ Import the `hubspot.crm.associations.schema` module and `oauth2` module.
    refreshToken = <Refresh Token>
    ```
 
-2. Instantiate a `hsAssociationSchema:ConnectionConfig` with the obtained credentials and initialize the connector with it.
+2. Instantiate a `hsschema:ConnectionConfig` with the obtained credentials and initialize the connector with it.
 
     ```ballerina
     configurable string clientId = ?;
     configurable string clientSecret = ?;
     configurable string refreshToken = ?;
 
-   hsAssociationSchema:OAuth2RefreshTokenGrantConfig auth = {
+   hsschema:OAuth2RefreshTokenGrantConfig auth = {
       clientId,
       clientSecret,
       refreshToken,
       credentialBearer: oauth2:POST_BODY_BEARER
    };
 
-   final hsAssociationSchema:Client hubspot = check new ({ auth });
+   final hsschema:Client hubspot = check new ({ auth });
     ```
 
 ### Step 3: Invoke the connector operation
@@ -209,7 +209,7 @@ Now, utilize the available connector operations. A sample usecase is shown below
 
    ```ballerina
    public function main() returns error? {
-      hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
+      hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
          check hubspot->/contacts/deals/labels.get();
       io:println("Contact-Deal Association definitions: ", associations);
    }

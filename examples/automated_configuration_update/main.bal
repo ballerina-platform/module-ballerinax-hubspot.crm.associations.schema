@@ -1,23 +1,23 @@
 import ballerina/io;
 import ballerina/oauth2;
-import ballerinax/hubspot.crm.associations.schema as hsAssociationSchema;
+import ballerinax/hubspot.crm.associations.schema as hsschema;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
-hsAssociationSchema:OAuth2RefreshTokenGrantConfig auth = {
+hsschema:OAuth2RefreshTokenGrantConfig auth = {
     clientId: clientId,
     clientSecret: clientSecret,
     refreshToken: refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
-final hsAssociationSchema:Client hubspot = check new ({auth});
+final hsschema:Client hubspot = check new ({auth});
 
 // Function to create the association definition configuration payload for Create endpoint
 function createConfigurationCreatePayload
 (int:Signed32 typeId, "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category, int:Signed32 maxToObjectIds)
-returns hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationCreateRequest {
+returns hsschema:BatchInputPublicAssociationDefinitionConfigurationCreateRequest {
     return {
         inputs: [
             {
@@ -32,7 +32,7 @@ returns hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationCr
 // Function to create the association definition configuration payload for Update endpoint
 function createConfigurationUpdatePayload
 (int:Signed32 typeId, "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category, int:Signed32 maxToObjectIds)
-returns hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationUpdateRequest {
+returns hsschema:BatchInputPublicAssociationDefinitionConfigurationUpdateRequest {
     return {
         inputs: [
             {
@@ -47,20 +47,20 @@ returns hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationUp
 // Function to create the association definition configuration
 public function createConfiguration
         (
-        hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload,
+        hsschema:BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload,
         string fromObjectType,
         string toObjectType
     )
-returns hsAssociationSchema:BatchResponsePublicAssociationDefinitionUserConfiguration|error {
-    hsAssociationSchema:BatchResponsePublicAssociationDefinitionUserConfiguration response =
+returns hsschema:BatchResponsePublicAssociationDefinitionUserConfiguration|error {
+    hsschema:BatchResponsePublicAssociationDefinitionUserConfiguration response =
     check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/create.post(payload);
     return response;
 }
 
 // Function to get the association definition configuration
 public function getConfiguration(string fromObjectType, string toObjectType)
-returns hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
-    hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
+returns hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
+    hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
     check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType].get();
     return response;
 }
@@ -68,12 +68,12 @@ returns hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserCon
 // Function to update the association definition configuration
 public function updateConfiguration
         (
-        hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload,
+        hsschema:BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload,
         string fromObjectType,
         string toObjectType
     )
-returns hsAssociationSchema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|error {
-    hsAssociationSchema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response =
+returns hsschema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|error {
+    hsschema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult response =
     check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType]/batch/update.post(payload);
     return response;
 }
@@ -94,9 +94,9 @@ returns error? {
     }
 
     // Get association definition configuration before updating
-    hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getResponse =
+    hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getResponse =
     getConfiguration(fromObjectType, toObjectType);
-    if (getResponse is hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging
+    if (getResponse is hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging
         && getResponse.results[0].category == "HUBSPOT_DEFINED") {
         io:println(getResponse);
     } else {
@@ -104,11 +104,11 @@ returns error? {
     }
 
     // Update association definition configuration
-    hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationUpdateRequest updatePayload =
+    hsschema:BatchInputPublicAssociationDefinitionConfigurationUpdateRequest updatePayload =
         createConfigurationUpdatePayload(typeId, "HUBSPOT_DEFINED", maxToObjectIds);
-    hsAssociationSchema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|error updateResponse =
+    hsschema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|error updateResponse =
     updateConfiguration(updatePayload, fromObjectType, toObjectType);
-    if (updateResponse is hsAssociationSchema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult
+    if (updateResponse is hsschema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult
         && updateResponse.results[0].category == "HUBSPOT_DEFINED") {
         io:println("Association definition configuration updated successfully");
     } else {
@@ -116,9 +116,9 @@ returns error? {
     }
 
     // Get association definition configuration after updating
-    hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getResponse2 =
+    hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error getResponse2 =
     getConfiguration(fromObjectType, toObjectType);
-    if (getResponse2 is hsAssociationSchema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging
+    if (getResponse2 is hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging
         && getResponse2.results[0].category == "HUBSPOT_DEFINED") {
         io:println(getResponse2);
     } else {
@@ -134,11 +134,11 @@ public function main() returns error? {
     string newStatus = "NORMAL";
 
     // Create association definition configuration
-    hsAssociationSchema:BatchInputPublicAssociationDefinitionConfigurationCreateRequest createPayload =
+    hsschema:BatchInputPublicAssociationDefinitionConfigurationCreateRequest createPayload =
         createConfigurationCreatePayload(typeId, "HUBSPOT_DEFINED", 2);
-    hsAssociationSchema:BatchResponsePublicAssociationDefinitionUserConfiguration|error createResponse =
+    hsschema:BatchResponsePublicAssociationDefinitionUserConfiguration|error createResponse =
         createConfiguration(createPayload, fromObjectType, toObjectType);
-    if (createResponse is hsAssociationSchema:BatchResponsePublicAssociationDefinitionUserConfiguration
+    if (createResponse is hsschema:BatchResponsePublicAssociationDefinitionUserConfiguration
         && createResponse.results[0].category == "HUBSPOT_DEFINED") {
         io:println("Association definition configuration created successfully");
     } else {
