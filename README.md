@@ -219,8 +219,13 @@ Now, utilize the available connector operations. A sample usecase is shown below
 
 The `HubSpot CRM Associations schema` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/tree/main/examples), covering the following use cases.
 
-1. 
-2. 
+1. [Association Analytics Report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics_report)
+
+2. [Automated Configuration Update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automated_configuration_update)
+
+3. [Companies Association Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management)
+
+4. [Custom Association For Hospital System](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system)
 
 ## Build from the source
 
