@@ -1,14 +1,6 @@
-# Examples
+# Companies association management
 
-The `ballerinax/hubspot.crm.associations.schema` connector provides practical examples illustrating usage in various scenarios.
-
-1. [Association Definition Analytics Report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics_report)
-
-2. [Automated Association Defnition Configuration Update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automated_configuration_update)
-
-3. [Association Definition Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management)
-
-4. [Custom Association For a Hospital System](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system)
+This example illustrates how to manage associations between `companies` object types within HubSpot using the Associations Schema API. It demonstrates the creation of a custom `Headquarters-Franchise` association, along with the ability to read, update, and delete these definitions. This structured approach enhances relationship mapping and organization within the CRM.
 
 ## Prerequisites
 
