@@ -1,0 +1,14 @@
+[package]
+org = "aaishah_hamdha"
+name = "automated_configuration_update"
+version = "0.1.0"
+distribution = "2201.11.0"
+
+[build-options]
+observabilityIncluded = true
+
+[[dependency]]
+org = "ballerinax"
+name = "hubspot.crm.associations.schema"
+version = "1.0.0"
+repository="local"
