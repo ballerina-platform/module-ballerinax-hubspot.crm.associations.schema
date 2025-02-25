@@ -6,34 +6,34 @@ The `ballerinax/module-ballerinax-hubspot.crm.associations.schema` connector off
 
 ## Setup guide
 
-To use the HubSpot Associations schema connector, you need a HubSpot developer account and an associated app with API access. If you don’t have one, register for a HubSpot developer account first.
+You need a HubSpot developer account and an associated app with API access to use the HubSpot Associations schema connector. If you don’t have one, register for a HubSpot developer account first.
 
 ### Step 1: Login to a HubSpot developer account
 
-If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
+If you don't have a HubSpot Developer Account, you can sign up for a free account [here](https://developers.hubspot.com/get-started)
 
 If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
-### Step 2: Create a developer test account under your account(optional)
+### Step 2: Create a developer test account (optional)
 
-Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
+Within app developer accounts, you can create a [developer test account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account to test apps and integrations without affecting any real HubSpot data.
 
-> **Note: These accounts are only for development and testing purposes. In production you should not use developer test accounts.**
+> **Note:** These accounts are only for development and testing purposes. In production, you should not use developer test accounts.
 
 1. Go to the Test accounts section from the left sidebar.
    ![Test accounts section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account.png)
 
-2. Click on the `Create developer test account` button on the top right corner.
+2. Click the `Create developer test account` button in the top right corner.
    ![Create developer test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-test-account.png)
 
-3. In the pop-up window, provide a name for the test account and click on the `Create` button.
+3. In the pop-up window, provide a name for the test account and click the `Create` button.
    ![Create test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-account.png)
    You will see the newly created test account in the list of test accounts.
    ![Test account portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account-portal.png)
 
 ### Step 3: Create a HubSpot app
 
-1. Navigate to the `Apps` section in the left sidebar and click on the `Create app` button in the top right corner.
+1. Navigate to the `Apps` section in the left sidebar and click the `Create app` button in the top right corner.
    ![Create app](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-app.png)
 
 2. Provide a public app name and description for your app.
@@ -44,7 +44,7 @@ Within app developer accounts, you can create [developer test accounts](https://
 1. Move to the `Auth` tab.
    ![Configure authentication](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/config-auth.png)
 
-2. In the `Scopes` section, add the following scopes for your app using the `Add new scopes` button.
+2. Add the following scopes for your app using the `Add new scopes` button in the `Scopes` section.
 
 - `crm.objects.contacts.read`
 - `crm.objects.contacts.write`
@@ -59,14 +59,14 @@ Within app developer accounts, you can create [developer test accounts](https://
 
    ![Add scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/add-scopes.png)
 
-3. In the `Redirect URL` section, add the redirect URL for your app. This is the URL where the user will be redirected after the authentication process. You can use `localhost` for testing purposes. Then click the `Create App` button.
+3. Add the redirect URL for your app in the `Redirect URL` section. This is the URL where the user will be redirected after authentication. You can use `localhost` for testing purposes. Then click the `Create App` button.
 
    ![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/redirect-url.png)
 
 ### Step 5: Get the client ID and client secret
 
-Navigate to the `Auth` tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
-![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
+Navigate to the `Auth` tab to see your app's `Client ID` and `Client Secret`. Make sure to save these values.
+   ![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
 
 ### Step 6: Setup authentication flow
 
@@ -129,7 +129,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 5. Store the refresh token securely for use in your application.
 
 6. If you are using testing tools (e.g., Postman, Insomnia) or need to manually refresh the token for testing, run the following `curl` command to refresh the access token when it expires, make a POST request to the HubSpot OAuth endpoint.
-Replace the `<YOUR_REFRESH_TOKEN>` ,`<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>` with your specific value.
+Replace the `<YOUR_REFRESH_TOKEN>`, `<YOUR_CLIENT_ID>`, and `<YOUR_CLIENT_SECRET>` with your specific value.
 
    **Linux/macOS (Bash)**
 
@@ -163,7 +163,7 @@ Import the `hubspot.crm.associations.schema` module and `oauth2` module.
 
    ```ballerina
    import ballerina/oauth2;
-   import ballerinax/hubspot.crm.associations.schema as hsAssociationSchema;
+   import ballerinax/hubspot.crm.associations.schema as hsschema;
    ```
 
 ### Step 2: Instantiate a new connector
@@ -176,21 +176,19 @@ Import the `hubspot.crm.associations.schema` module and `oauth2` module.
    refreshToken = <Refresh Token>
    ```
 
-2. Instantiate a `hsAssociationSchema:ConnectionConfig` with the obtained credentials and initialize the connector with it.
+2. Instantiate a `hsschema:ConnectionConfig` with the obtained credentials and initialize the connector with it.
 
     ```ballerina
-    configurable string clientId = ?;
-    configurable string clientSecret = ?;
-    configurable string refreshToken = ?;
-
-   hsAssociationSchema:OAuth2RefreshTokenGrantConfig auth = {
-      clientId,
-      clientSecret,
-      refreshToken,
-      credentialBearer: oauth2:POST_BODY_BEARER
-   };
-
-   final hsAssociationSchema:Client hubspot = check new ({ auth });
+     configurable string clientId = ?;
+     configurable string clientSecret = ?;
+     configurable string refreshToken = ?;
+    hsschema:OAuth2RefreshTokenGrantConfig auth = {
+        clientId,
+        clientSecret,
+        refreshToken,
+        credentialBearer: oauth2:POST_BODY_BEARER
+    };
+    final hsschema:Client hubspot = check new ({ auth });
     ```
 
 ### Step 3: Invoke the connector operation
@@ -201,7 +199,7 @@ Now, utilize the available connector operations. A sample usecase is shown below
 
    ```ballerina
    public function main() returns error? {
-      hsAssociationSchema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
+      hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
          check hubspot->/contacts/deals/labels.get();
       io:println("Contact-Deal Association definitions: ", associations);
    }
