@@ -24,9 +24,9 @@ configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
 hsschema:OAuth2RefreshTokenGrantConfig auth = {
-    clientId: clientId,
-    clientSecret: clientSecret,
-    refreshToken: refreshToken,
+    clientId,
+    clientSecret,
+    refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 final hsschema:Client hubspot = check new ({auth});
@@ -35,19 +35,19 @@ final hsschema:Client hubspot = check new ({auth});
 function createAssociationDefinitionCreatePayload(string name, string label, string inverseLabel)
         returns hsschema:PublicAssociationDefinitionCreateRequest {
     return {
-        inverseLabel: inverseLabel,
-        name: name,
-        label: label
+        inverseLabel,
+        name,
+        label
     };
 }
 
 // Function to create the association definition payload for update endpoint
-function createAssociationDefinitionUpdatePayload(int:Signed32 associationId, string label, string inverseLabel)
+function createAssociationDefinitionUpdatePayload(int:Signed32 associationTypeId, string label, string inverseLabel)
         returns hsschema:PublicAssociationDefinitionUpdateRequest {
     return {
-        inverseLabel: inverseLabel,
-        associationTypeId: associationId,
-        label: label
+        inverseLabel,
+        associationTypeId,
+        label
     };
 }
 
