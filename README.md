@@ -213,7 +213,7 @@ public function main() returns error? {
     io:println("Contact-Deal Association definitions: ", associations);
 }
 ```
-  
+
 ## Examples
 
 The `HubSpot CRM Associations schema` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/tree/main/examples), covering the following use cases.
@@ -250,39 +250,39 @@ Execute the commands below to build from the source.
 
 1. To build the package:
 
-   ```bash
-   ./gradlew clean build
-   ```
+    ```bash
+    ./gradlew clean build
+    ```
 
 2. To run the tests:
 
-   ```bash
-   ./gradlew clean test
-   ```
+    ```bash
+    ./gradlew clean test
+    ```
 
 3. To build the without the tests:
 
-   ```bash
-   ./gradlew clean build -x test
-   ```
+    ```bash
+    ./gradlew clean build -x test
+    ```
 
 4. To run tests against different environments:
 
-   ```bash
-   ./gradlew clean test -Pgroups=<Comma separated groups/test cases>
-   ```
+    ```bash
+    ./gradlew clean test -Pgroups=<Comma separated groups/test cases>
+    ```
 
 5. To debug the package with a remote debugger:
 
-   ```bash
-   ./gradlew clean build -Pdebug=<port>
-   ```
+    ```bash
+    ./gradlew clean build -Pdebug=<port>
+    ```
 
 6. To debug with the Ballerina language:
 
-   ```bash
-   ./gradlew clean build -PbalJavaDebug=<port>
-   ```
+    ```bash
+    ./gradlew clean build -PbalJavaDebug=<port>
+    ```
 
 7. Publish the generated artifacts to the local Ballerina Central repository:
 
@@ -292,9 +292,9 @@ Execute the commands below to build from the source.
 
 8. Publish the generated artifacts to the Ballerina Central repository:
 
-   ```bash
-   ./gradlew clean build -PpublishToCentral=true
-   ```
+    ```bash
+    ./gradlew clean build -PpublishToCentral=true
+    ```
 
 ## Contribute to Ballerina
 
