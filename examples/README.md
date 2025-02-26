@@ -8,8 +8,6 @@ The `ballerinax/hubspot.crm.associations.schema` connector provides practical ex
 
 3. [Association definition management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management) : Creates and manages custom associations (`Headquarters-Franchise`) between two `companies` objects, including reading, updating, and deleting associations.
 
-4. [Custom association for a hospital system](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system) : Creates a custom `Doctor_Patient` association between two `contacts` objects in a hospital CRM system.
-
 ## Prerequisites
 
 1. Generate HubSpot credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/blob/main/ballerina/Package.md#setup-guide).
