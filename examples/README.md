@@ -2,6 +2,7 @@
 
 The `ballerinax/hubspot.crm.associations.schema` connector provides practical examples illustrating usage in various scenarios.
 
+<<<<<<< HEAD
 1. [Association definition analytics report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics_report) : Analyzes association definition configurations between object types (e.g., `contacts` to `deals`) in HubSpot, categorizing them and generating a count-based report.
 
 2. [Automated association defnition configuration update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automated_configuration_update) : Manages Doctor-Patient associations by updating them dynamically based on status changes (`Pandemic`, `Emergency`, `Normal`, `Special`).
@@ -9,6 +10,15 @@ The `ballerinax/hubspot.crm.associations.schema` connector provides practical ex
 3. [Association definition management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management) : Creates and manages custom associations (`Headquarters-Franchise`) between two `companies` objects, including reading, updating, and deleting associations.
 
 4. [Custom association for a hospital system](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system) : Creates a custom `Doctor_Patient` association between two `contacts` objects in a hospital CRM system.
+=======
+1. [Association definition analytics report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics_report): Analyzes association definition configurations between object types (e.g., `contacts` to `deals`) in HubSpot, categorizing them and generating a count-based report.
+
+2. [Automated association defnition configuration update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automated_configuration_update): Manages Doctor-Patient associations by updating them dynamically based on status changes (`Pandemic`, `Emergency`, `Normal`, `Special`).
+
+3. [Association definition management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management): Creates and manages custom associations (`Headquarters-Franchise`) between two `companies` objects, including reading, updating, and deleting associations.
+
+4. [Custom association for a hospital system](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system): Creates a custom `Doctor_Patient` association between two `contacts` objects in a hospital CRM system.
+>>>>>>> f32dddab23453420daccfad4367b2ae9ffd7d692
 
 ## Prerequisites
 
