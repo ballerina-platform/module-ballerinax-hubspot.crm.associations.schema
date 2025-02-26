@@ -40,7 +40,7 @@ function configurationsAnalysis() {
         int integratorDefined = 0;
         int total = getAllResponse.results.length();
 
-        foreach var config in getAllResponse.results {
+        foreach hsschema:PublicAssociationDefinitionUserConfiguration config in getAllResponse.results {
             match config.category {
                 "HUBSPOT_DEFINED" => {
                     hubspotDefined += 1;
@@ -74,7 +74,7 @@ function definitionsAnalysis(string fromObjectType, string toObjectType) {
         int integratorDefined = 0;
         int total = getAssociationsResponse.results.length();
 
-        foreach var config in getAssociationsResponse.results {
+        foreach hsschema:AssociationSpecWithLabel config in getAssociationsResponse.results {
             match config.category {
                 "HUBSPOT_DEFINED" => {
                     hubspotDefined += 1;
