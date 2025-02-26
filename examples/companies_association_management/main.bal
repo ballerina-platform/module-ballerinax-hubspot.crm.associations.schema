@@ -51,31 +51,6 @@ function createAssociationDefinitionUpdatePayload(int:Signed32 associationTypeId
     };
 }
 
-// Function to create the association definition
-function createAssociationDefinition
-        (hsschema:PublicAssociationDefinitionCreateRequest payload, string fromObjectType, string toObjectType)
-        returns hsschema:CollectionResponseAssociationSpecWithLabelNoPaging|error {
-    hsschema:CollectionResponseAssociationSpecWithLabelNoPaging response =
-        check hubspot->/[fromObjectType]/[toObjectType]/labels.post(payload);
-    return response;
-}
-
-// Function to update the association definition
-function updateAssociationDefinition
-        (hsschema:PublicAssociationDefinitionUpdateRequest payload, string fromObjectType, string toObjectType)
-        returns http:Response|error {
-    http:Response response =
-        check hubspot->/[fromObjectType]/[toObjectType]/labels.put(payload);
-    return response;
-}
-
-// Function to delete the association definition
-function deleteAssociationDefinition(int:Signed32 associationId, string fromObjectType, string toObjectType)
-returns http:Response|error {
-    http:Response response = check hubspot->/[fromObjectType]/[toObjectType]/labels/[associationId].delete();
-    return response;
-}
-
 // Main function to create, update, and delete the headquarters-franchise company association definition
 public function main() returns error? {
     io:println("Managing Headquarters-Franchise company association...\n\n");
@@ -96,7 +71,7 @@ public function main() returns error? {
 
     // Create the association definition
     hsschema:CollectionResponseAssociationSpecWithLabelNoPaging createdAssociationDefinition =
-        check createAssociationDefinition(CreatePayload, fromObjectType, toObjectType);
+        check hubspot->/[fromObjectType]/[toObjectType]/labels.post(CreatePayload);
     io:println("Association label created successfully\n");
 
     //Read association definitions
@@ -113,16 +88,16 @@ public function main() returns error? {
         createAssociationDefinitionUpdatePayload(associationId, newLabel, newInverseLabel);
 
     // Update the association definition
-    http:Response updateStatus = check updateAssociationDefinition(UpdatePayload, fromObjectType, toObjectType);
-    if (updateStatus.statusCode == 204) {
+    http:Response updateStatus = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(UpdatePayload);
+    if updateStatus.statusCode == 204 {
         io:println("Association label updated successfully\n");
     }
 
     // Delete the association definition
-    http:Response deleteStatus = check deleteAssociationDefinition(associationId, fromObjectType, toObjectType);
+    http:Response deleteStatus = check hubspot->/[fromObjectType]/[toObjectType]/labels/[associationId].delete();
     http:Response inversDeleteStatus =
-        check deleteAssociationDefinition(inverseAssociationId, fromObjectType, toObjectType);
-    if (deleteStatus.statusCode == 204 && inversDeleteStatus.statusCode == 204) {
+        check hubspot->/[fromObjectType]/[toObjectType]/labels/[inverseAssociationId].delete();
+    if deleteStatus.statusCode == 204 && inversDeleteStatus.statusCode == 204 {
         io:println("Association definition with ID ", associationId, " has been deleted.");
     }
 }
