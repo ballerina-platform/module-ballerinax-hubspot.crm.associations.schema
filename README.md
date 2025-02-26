@@ -29,28 +29,28 @@ Within app developer accounts, you can create a [developer test account](https:/
 > **Note:** These accounts are only for development and testing purposes. In production, you should not use developer test accounts.
 
 1. Go to the Test accounts section from the left sidebar.
-   ![Test accounts section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account.png)
+    ![Test accounts section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account.png)
 
 2. Click the `Create developer test account` button in the top right corner.
-   ![Create developer test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-test-account.png)
+    ![Create developer test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-test-account.png)
 
 3. In the pop-up window, provide a name for the test account and click the `Create` button.
-   ![Create test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-account.png)
-   You will see the newly created test account in the list of test accounts.
-   ![Test account portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account-portal.png)
+    ![Create test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-account.png)
+    You will see the newly created test account in the list of test accounts.
+    ![Test account portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account-portal.png)
 
 ### Step 3: Create a HubSpot app
 
 1. Navigate to the `Apps` section in the left sidebar and click the `Create app` button in the top right corner.
-   ![Create app](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-app.png)
+    ![Create app](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-app.png)
 
 2. Provide a public app name and description for your app.
-   ![App name and description](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/app-name-desc.png)
+    ![App name and description](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/app-name-desc.png)
 
 ### Step 4: Setup authentication
 
 1. Move to the `Auth` tab.
-   ![Configure authentication](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/config-auth.png)
+    ![Configure authentication](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/config-auth.png)
 
 2. Add the following scopes for your app using the `Add new scopes` button in the `Scopes` section.
 
@@ -65,16 +65,17 @@ Within app developer accounts, you can create a [developer test account](https:/
 - `crm.objects.custom.read`
 - `crm.objects.custom.write`
 
-   ![Add scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/add-scopes.png)
+    ![Add scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/add-scopes.png)
 
 3. Add the redirect URL for your app in the `Redirect URL` section. This is the URL where the user will be redirected after authentication. You can use `localhost` for testing purposes. Then click the `Create App` button.
 
-   ![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/redirect-url.png)
+    ![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/redirect-url.png)
 
 ### Step 5: Get the client ID and client secret
 
 Navigate to the `Auth` tab to see your app's `Client ID` and `Client Secret`. Make sure to save these values.
-   ![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
+
+    ![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
 
 ### Step 6: Setup authentication flow
 
@@ -82,84 +83,84 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
 1. Create an authorization URL using the following format:
 
-   ```
-   https://app.hubspot.com/oauth/authorize?client_id=<YOUR_CLIENT_ID>&scope=<YOUR_SCOPES>&redirect_uri=<YOUR_REDIRECT_URI>
-   ```
+    ```
+    https://app.hubspot.com/oauth/authorize?client_id=<YOUR_CLIENT_ID>&scope=<YOUR_SCOPES> redirect_uri=<YOUR_REDIRECT_URI>
+    ```
 
-   Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
+    Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
 
 2. Paste it in the browser and select your developer test account to install the app when prompted.
-   ![Account select](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/account-select.png)
+    ![Account select](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/account-select.png)
 
 3. A code will be displayed in the browser. Copy the code.
 
 4. Run the following `curl` command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the `<CODE>`.
 
-   **Linux/macOS (Bash)**
+    **Linux/macOS (Bash)**
 
-   Use the following `curl` command in your terminal:
+    Use the following `curl` command in your terminal:
 
-   ```bash
-   curl --location "https://api.hubapi.com/oauth/v1/token" \
-   --header "Content-Type: application/x-www-form-urlencoded" \
-   --data-urlencode "grant_type=authorization_code" \
-   --data-urlencode "code=<CODE>" \
-   --data-urlencode "redirect_uri=<YOUR_REDIRECT_URI>" \
-   --data-urlencode "client_id=<YOUR_CLIENT_ID>" \
-   --data-urlencode "client_secret=<YOUR_CLIENT_SECRET>"
-   ```
+    ```bash
+    curl --location "https://api.hubapi.com/oauth/v1/token" \
+    --header "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode "grant_type=authorization_code" \
+    --data-urlencode "code=<CODE>" \
+    --data-urlencode "redirect_uri=<YOUR_REDIRECT_URI>" \
+    --data-urlencode "client_id=<YOUR_CLIENT_ID>" \
+    --data-urlencode "client_secret=<YOUR_CLIENT_SECRET>"
+    ```
 
-   **Windows (CMD)**
+    **Windows (CMD)**
 
-   Use the following `curl` command in Command Prompt:
+    Use the following `curl` command in Command Prompt:
 
-   ```bash
-   curl --location "https://api.hubapi.com/oauth/v1/token" ^
-   --header "Content-Type: application/x-www-form-urlencoded" ^
-   --data-urlencode "grant_type=authorization_code" ^
-   --data-urlencode "code=<CODE>" ^
-   --data-urlencode "redirect_uri=<YOUR_REDIRECT_URI>" ^
-   --data-urlencode "client_id=<YOUR_CLIENT_ID>" ^
-   --data-urlencode "client_secret=<YOUR_CLIENT_SECRET>"
-   ```
+    ```bash
+    curl --location "https://api.hubapi.com/oauth/v1/token" ^
+    --header "Content-Type: application/x-www-form-urlencoded" ^
+    --data-urlencode "grant_type=authorization_code" ^
+    --data-urlencode "code=<CODE>" ^
+    --data-urlencode "redirect_uri=<YOUR_REDIRECT_URI>" ^
+    --data-urlencode "client_id=<YOUR_CLIENT_ID>" ^
+    --data-urlencode "client_secret=<YOUR_CLIENT_SECRET>"
+    ```
 
-   This command will return the access token and refresh token which are necessary for API calls.
+    This command will return the access token and refresh token which are necessary for API calls.
 
-      ```json
-      {
-         "token_type": "bearer",
-         "refresh_token": "<Refresh Token>",
-         "access_token": "<Access Token>",
-         "expires_in": 1800
-      }
-      ```
+    ```json
+    {
+        "token_type": "bearer",
+        "refresh_token": "<Refresh Token>",
+        "access_token": "<Access Token>",
+        "expires_in": 1800
+    }
+    ```
 
 5. Store the refresh token securely for use in your application.
 
 6. If you are using testing tools (e.g., Postman, Insomnia) or need to manually refresh the token for testing, run the following `curl` command to refresh the access token when it expires, make a POST request to the HubSpot OAuth endpoint.
 Replace the `<YOUR_REFRESH_TOKEN>`, `<YOUR_CLIENT_ID>`, and `<YOUR_CLIENT_SECRET>` with your specific value.
 
-   **Linux/macOS (Bash)**
+    **Linux/macOS (Bash)**
 
-   Use the following `curl` command in your terminal:
+    Use the following `curl` command in your terminal:
 
-   ```bash
-   curl --request POST \
-   --url https://api.hubapi.com/oauth/v1/token \
-   --header 'content-type: application/x-www-form-urlencoded' \
-   --data 'grant_type=refresh_token&refresh_token=<YOUR_REFRESH_TOKEN>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
-   ```
+    ```bash
+    curl --request POST \
+    --url https://api.hubapi.com/oauth/v1/token \
+    --header 'content-type: application/x-www-form-urlencoded' \
+    --data 'grant_type=refresh_token&refresh_token=<YOUR_REFRESH_TOKEN>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
+    ```
 
-   **Windows (CMD)**
+    **Windows (CMD)**
 
-   Use the following `curl` command in your command prompt:
+    Use the following `curl` command in your command prompt:
 
-   ```bash
-   curl --request POST ^
-   --url https://api.hubapi.com/oauth/v1/token ^
-   --header 'content-type: application/x-www-form-urlencoded' ^
-   --data 'grant_type=refresh_token&refresh_token=<YOUR_REFRESH_TOKEN>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
-   ```
+    ```bash
+    curl --request POST ^
+    --url https://api.hubapi.com/oauth/v1/token ^
+    --header 'content-type: application/x-www-form-urlencoded' ^
+    --data 'grant_type=refresh_token&refresh_token=<YOUR_REFRESH_TOKEN>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
+    ```
 
 ## Quickstart
 
@@ -169,27 +170,27 @@ To use the `Hubspot CRM Associations Schema` connector in your Ballerina applica
 
 Import the `hubspot.crm.associations.schema` module and `oauth2` module.
 
-   ```ballerina
-   import ballerina/oauth2;
-   import ballerinax/hubspot.crm.associations.schema as hsschema;
-   ```
+    ```ballerina
+    import ballerina/oauth2;
+    import ballerinax/hubspot.crm.associations.schema as hsschema;
+    ```
 
 ### Step 2: Instantiate a new connector
 
 1. Create a `Config.toml` file and, configure the obtained credentials in the above steps as follows:
 
-   ```toml
-   clientId = <Client Id>
-   clientSecret = <Client Secret>
-   refreshToken = <Refresh Token>
-   ```
+    ```toml
+    clientId = <Client Id>
+    clientSecret = <Client Secret>
+    refreshToken = <Refresh Token>
+    ```
 
 2. Instantiate a `hsschema:ConnectionConfig` with the obtained credentials and initialize the connector with it.
 
     ```ballerina
-     configurable string clientId = ?;
-     configurable string clientSecret = ?;
-     configurable string refreshToken = ?;
+    configurable string clientId = ?;
+    configurable string clientSecret = ?;
+    configurable string refreshToken = ?;
     hsschema:OAuth2RefreshTokenGrantConfig auth = {
         clientId,
         clientSecret,
@@ -205,13 +206,13 @@ Now, utilize the available connector operations. A sample usecase is shown below
 
 #### Read all association definitions from objects contact to deals
 
-   ```ballerina
-   public function main() returns error? {
-      hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
-         check hubspot->/contacts/deals/labels.get();
-      io:println("Contact-Deal Association definitions: ", associations);
-   }
-   ```
+    ```ballerina
+    public function main() returns error? {
+        hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
+            check hubspot->/contacts/deals/labels.get();
+        io:println("Contact-Deal Association definitions: ", associations);
+    }
+    ```
 
 ## Examples
 
