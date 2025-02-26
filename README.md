@@ -187,9 +187,9 @@ Import the `hubspot.crm.associations.schema` module and `oauth2` module.
 2. Instantiate a `hsschema:ConnectionConfig` with the obtained credentials and initialize the connector with it.
 
     ```ballerina
-     configurable string clientId = ?;
-     configurable string clientSecret = ?;
-     configurable string refreshToken = ?;
+    configurable string clientId = ?;
+    configurable string clientSecret = ?;
+    configurable string refreshToken = ?;
     hsschema:OAuth2RefreshTokenGrantConfig auth = {
         clientId,
         clientSecret,
