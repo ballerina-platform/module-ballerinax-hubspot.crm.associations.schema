@@ -8,7 +8,7 @@ dependencies-toml-version = "2"
 distribution-version = "2201.11.0"
 
 [[package]]
-org = "aaishah_hamdha"
+org = "wso2"
 name = "companies_association_management"
 version = "0.1.0"
 dependencies = [
@@ -19,7 +19,7 @@ dependencies = [
 	{org = "ballerinax", name = "hubspot.crm.associations.schema"}
 ]
 modules = [
-	{org = "aaishah_hamdha", packageName = "companies_association_management", moduleName = "companies_association_management"}
+	{org = "wso2", packageName = "companies_association_management", moduleName = "companies_association_management"}
 ]
 
 [[package]]
