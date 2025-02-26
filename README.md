@@ -75,11 +75,11 @@ Within app developer accounts, you can create a [developer test account](https:/
 
 Navigate to the `Auth` tab to see your app's `Client ID` and `Client Secret`. Make sure to save these values.
 
-    ![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
+![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
 
 ### Step 6: Setup authentication flow
 
-Before proceeding with the Quickstart, ensure you have obtained the Access Token or Refresh Token using the following steps:
+Before proceeding with the Quickstart, ensure you have obtained the access token or refresh token using the following steps:
 
 1. Create an authorization URL using the following format:
 
