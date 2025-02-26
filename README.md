@@ -204,7 +204,7 @@ import ballerinax/hubspot.crm.associations.schema as hsschema;
 
 Now, utilize the available connector operations. A sample usecase is shown below.
 
-    #### Read all association definitions from objects contact to deals
+    Read all association definitions from objects contact to deals
 
     ```ballerina
     public function main() returns error? {
