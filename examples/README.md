@@ -2,13 +2,13 @@
 
 The `ballerinax/hubspot.crm.associations.schema` connector provides practical examples illustrating usage in various scenarios.
 
-1. [Association Definition Analytics Report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics_report)
+1. [Association definition analytics report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/association_analytics_report)
 
-2. [Automated Association Defnition Configuration Update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automated_configuration_update)
+2. [Automated association defnition configuration update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/automated_configuration_update)
 
-3. [Association Definition Management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management)
+3. [Association definition management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/companies_association_management)
 
-4. [Custom Association For a Hospital System](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system)
+4. [Custom association for a hospital system](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/examples/custom_association_for_hospital_system)
 
 ## Prerequisites
 
