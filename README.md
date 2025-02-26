@@ -170,10 +170,10 @@ To use the `Hubspot CRM Associations Schema` connector in your Ballerina applica
 
 Import the `hubspot.crm.associations.schema` module and `oauth2` module.
 
-    ```ballerina
-    import ballerina/oauth2;
-    import ballerinax/hubspot.crm.associations.schema as hsschema;
-    ```
+```ballerina
+import ballerina/oauth2;
+import ballerinax/hubspot.crm.associations.schema as hsschema;
+```
 
 ### Step 2: Instantiate a new connector
 
@@ -206,20 +206,19 @@ Now, utilize the available connector operations. A sample usecase is shown below
 
 #### Read all association definitions from objects contact to deals
 
-    ```ballerina
-    public function main() returns error? {
-        hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
-            check hubspot->/contacts/deals/labels.get();
-        io:println("Contact-Deal Association definitions: ", associations);
-    }
-    ```
-
+```ballerina
+public function main() returns error? {
+    hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
+        check hubspot->/contacts/deals/labels.get();
+    io:println("Contact-Deal Association definitions: ", associations);
+}
+```
+  
 ## Examples
 
 The `HubSpot CRM Associations schema` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/tree/main/examples), covering the following use cases.
 
-1. 
-2. 
+[//]: # (TODO: Add examples)
 
 ## Build from the source
 
