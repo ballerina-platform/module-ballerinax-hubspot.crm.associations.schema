@@ -10,7 +10,7 @@ The `ballerinax/hubspot.crm.associations.schema` connector provides practical ex
 
 ## Prerequisites
 
-1. Generate HubSpot credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.properties/blob/main/ballerina/Package.md#setup-guide).
+1. Generate HubSpot credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/blob/main/README.md#setup-guide).
 
 2. For each example, create a `Config.toml` file the related configuration. Here's an example of how your `Config.toml` file should look:
 
