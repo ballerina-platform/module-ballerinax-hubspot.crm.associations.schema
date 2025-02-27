@@ -111,9 +111,8 @@ returns error? {
     // Get association definition configuration before updating
     hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging getResponse =
     check getConfiguration(fromObjectType, toObjectType);
-    if getResponse is hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging
-        && getResponse.results[0].category == "HUBSPOT_DEFINED" {
-        io:println(getResponse);
+    if  getResponse.results[0].category == "HUBSPOT_DEFINED" {
+        io:println("Befor update:\n",getResponse, "\n");
     } else {
         io:println("Error retrieving association definition configuration");
     }
@@ -123,9 +122,8 @@ returns error? {
         createConfigurationUpdatePayload(typeId, "HUBSPOT_DEFINED", maxToObjectIds);
     hsschema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult updateResponse =
     check updateConfiguration(updatePayload, fromObjectType, toObjectType);
-    if updateResponse is hsschema:BatchResponsePublicAssociationDefinitionConfigurationUpdateResult
-        && updateResponse.results[0].category == "HUBSPOT_DEFINED" {
-        io:println("Association definition configuration updated successfully");
+    if updateResponse.results[0].category == "HUBSPOT_DEFINED" {
+        io:println("Association definition configuration updated successfully\n");
     } else {
         io:println("Error updating association definition configuration");
     }
@@ -133,9 +131,8 @@ returns error? {
     // Get association definition configuration after updating
     hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging getResponse2 =
     check getConfiguration(fromObjectType, toObjectType);
-    if getResponse2 is hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging
-        && getResponse2.results[0].category == "HUBSPOT_DEFINED" {
-        io:println(getResponse2);
+    if getResponse2.results[0].category == "HUBSPOT_DEFINED" {
+        io:println("After update:\n",getResponse2, "\n");
     } else {
         io:println("Error retrieving association definition configuration");
     }
@@ -153,8 +150,7 @@ public function main() returns error? {
         createConfigurationCreatePayload(typeId, "HUBSPOT_DEFINED", 2);
     hsschema:BatchResponsePublicAssociationDefinitionUserConfiguration createResponse =
         check createConfiguration(createPayload, fromObjectType, toObjectType);
-    if createResponse is hsschema:BatchResponsePublicAssociationDefinitionUserConfiguration
-        && createResponse.results[0].category == "HUBSPOT_DEFINED" {
+    if createResponse.results[0].category == "HUBSPOT_DEFINED" {
         io:println("Association definition configuration created successfully");
     } else {
         io:println("Error creating association definition configuration");
@@ -162,7 +158,7 @@ public function main() returns error? {
 
     // Periodically check for status changes and update configuration
     while true {
-        io:println("Enter status (1: NORMAL, 2: SPECIAL, 3: EMERGENCY, 4: PANDEMIC) or x: exit: ");
+        io:println("Enter status (1: NORMAL, 2: SPECIAL, 3: EMERGENCY, 4: PANDEMIC) or x: exit=> ");
         string? input = io:readln();
         if input == "x" || input == "X" {
             break;
@@ -188,7 +184,7 @@ public function main() returns error? {
 
         if newStatus != status {
             status = newStatus;
-            io:println("Status: ", status);
+            io:println("Status: ", status, "\n");
             check handleStatusChange(fromObjectType, toObjectType, typeId, status);
         }
     }

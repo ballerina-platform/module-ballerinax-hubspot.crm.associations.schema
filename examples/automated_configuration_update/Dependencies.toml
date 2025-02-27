@@ -8,20 +8,6 @@ dependencies-toml-version = "2"
 distribution-version = "2201.11.0"
 
 [[package]]
-org = "wso2"
-name = "automated_configuration_update"
-version = "0.1.0"
-dependencies = [
-	{org = "ballerina", name = "io"},
-	{org = "ballerina", name = "oauth2"},
-	{org = "ballerinai", name = "observe"},
-	{org = "ballerinax", name = "hubspot.crm.associations.schema"}
-]
-modules = [
-	{org = "wso2", packageName = "automated_configuration_update", moduleName = "automated_configuration_update"}
-]
-
-[[package]]
 org = "ballerina"
 name = "auth"
 version = "2.13.0"
@@ -321,5 +307,19 @@ dependencies = [
 ]
 modules = [
 	{org = "ballerinax", packageName = "hubspot.crm.associations.schema", moduleName = "hubspot.crm.associations.schema"}
+]
+
+[[package]]
+org = "wso2"
+name = "automated_configuration_update"
+version = "0.1.0"
+dependencies = [
+	{org = "ballerina", name = "io"},
+	{org = "ballerina", name = "oauth2"},
+	{org = "ballerinai", name = "observe"},
+	{org = "ballerinax", name = "hubspot.crm.associations.schema"}
+]
+modules = [
+	{org = "wso2", packageName = "automated_configuration_update", moduleName = "automated_configuration_update"}
 ]
 
