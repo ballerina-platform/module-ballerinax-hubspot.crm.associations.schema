@@ -57,7 +57,7 @@ Within app developer accounts, you can create a [developer test account](https:/
 - `crm.objects.custom.read`
 - `crm.objects.custom.write`
 
-    ![Add scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/scopes.png)
+    ![Add scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/add-scopes.png)
 
 3. Add the redirect URL for your app in the `Redirect URL` section. This is the URL where the user will be redirected after authentication. You can use `localhost` for testing purposes. Then click the `Create App` button.
 
