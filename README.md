@@ -29,28 +29,28 @@ Within app developer accounts, you can create a [developer test account](https:/
 > **Note:** These accounts are only for development and testing purposes. In production, you should not use developer test accounts.
 
 1. Go to the Test accounts section from the left sidebar.
-    ![Test accounts section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account.png)
+    ![Test accounts section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/test-account.png)
 
 2. Click the `Create developer test account` button in the top right corner.
-    ![Create developer test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-test-account.png)
+    ![Create developer test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/create-test-account.png)
 
 3. In the pop-up window, provide a name for the test account and click the `Create` button.
-    ![Create test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-account.png)
+    ![Create test account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/create-account.png)
     You will see the newly created test account in the list of test accounts.
-    ![Test account portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/test-account-portal.png)
+    ![Test account portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/test-account-portal.png)
 
 ### Step 3: Create a HubSpot app
 
 1. Navigate to the `Apps` section in the left sidebar and click the `Create app` button in the top right corner.
-    ![Create app](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/create-app.png)
+    ![Create app](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/create-app.png)
 
 2. Provide a public app name and description for your app.
-    ![App name and description](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/app-name-desc.png)
+    ![App name and description](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/app-name-desc.png)
 
 ### Step 4: Setup authentication
 
 1. Move to the `Auth` tab.
-    ![Configure authentication](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/config-auth.png)
+    ![Configure authentication](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/config-auth.png)
 
 2. Add the following scopes for your app using the `Add new scopes` button in the `Scopes` section.
 
@@ -65,17 +65,17 @@ Within app developer accounts, you can create a [developer test account](https:/
 - `crm.objects.custom.read`
 - `crm.objects.custom.write`
 
-    ![Add scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/add-scopes.png)
+    ![Add scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/scopes.png)
 
 3. Add the redirect URL for your app in the `Redirect URL` section. This is the URL where the user will be redirected after authentication. You can use `localhost` for testing purposes. Then click the `Create App` button.
 
-    ![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/redirect-url.png)
+    ![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/redirect-url.png)
 
 ### Step 5: Get the client ID and client secret
 
 Navigate to the `Auth` tab to see your app's `Client ID` and `Client Secret`. Make sure to save these values.
 
-![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/client-id-secret.png)
+![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/client-id-secret.png)
 
 ### Step 6: Setup authentication flow
 
@@ -90,7 +90,7 @@ Before proceeding with the Quickstart, ensure you have obtained the access token
     Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
 
 2. Paste it in the browser and select your developer test account to install the app when prompted.
-    ![Account select](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/main/docs/resources/account-select.png)
+    ![Account select](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/refs/heads/main/docs/resources/account-select.png)
 
 3. A code will be displayed in the browser. Copy the code.
 
@@ -218,7 +218,11 @@ public function main() returns error? {
 
 The `HubSpot CRM Associations schema` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/tree/main/examples), covering the following use cases.
 
-[//]: # (TODO: Add examples)
+1. [Association definition analytics report](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/tree/main/examples/association_analytics_report) : Analyzes association definition configurations between object types (e.g., `contacts` to `deals`) in HubSpot, categorizing them and generating a count-based report.
+
+2. [Automated association defnition configuration update](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/tree/main/examples/automated_configuration_update) : Manages Doctor-Patient associations by updating them dynamically based on status changes (`Pandemic`, `Emergency`, `Normal`, or `Special`).
+
+3. [Association definition management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/tree/main/examples/companies_association_management) : Creates and manages custom associations (`Headquarters-Franchise`) between two `companies` objects, including reading, updating, and deleting associations.
 
 ## Build from the source
 
