@@ -199,9 +199,12 @@ Now, utilize the available connector operations. A sample usecase is shown below
 #### Read all association definitions from objects contact to deals
 
 ```ballerina
+final string fromObjectType = "contacts";
+final string toObjectType = "deals";
+
 public function main() returns error? {
     hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
-        check hubspot->/contacts/deals/labels;
+        check hubspot->/[fromObjectType]/[toObjectType]/labels;
     io:println("Contact-Deal Association definitions: ", associations);
 }
 ```
