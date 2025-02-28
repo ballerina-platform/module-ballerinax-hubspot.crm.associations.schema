@@ -18,7 +18,7 @@ import ballerina/http;
 import ballerina/oauth2;
 import ballerina/test;
 
-configurable boolean isLiveServer =?;
+configurable boolean isLiveServer = false;
 
 configurable string clientId = "client-id";
 configurable string clientSecret = "client-secret";
