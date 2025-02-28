@@ -16,16 +16,13 @@
 
 import ballerina/http;
 import ballerina/oauth2;
-import ballerina/os;
 import ballerina/test;
 
-final boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
-final string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v4/associations" :
-    "http://localhost:9090";
+configurable boolean isLiveServer =?;
 
-final string clientId = os:getEnv("HUBSPOT_CLIENT_ID");
-final string clientSecret = os:getEnv("HUBSPOT_CLIENT_SECRET");
-final string refreshToken = os:getEnv("HUBSPOT_REFRESH_TOKEN");
+configurable string clientId = "client-id";
+configurable string clientSecret = "client-secret";
+configurable string refreshToken = "refresh-token";
 
 final string fromObjectType = "contacts";
 final string toObjectType = "deals";
@@ -50,9 +47,9 @@ isolated function initClient() returns Client|error {
             refreshToken,
             credentialBearer: oauth2:POST_BODY_BEARER
         };
-        return check new Client({auth}, serviceUrl);
+        return check new Client({auth},"https://api.hubapi.com/crm/v4/associations" );
     }
-    return check new Client({auth: {token: "test-token"}}, serviceUrl);
+    return check new Client({auth: {token: "test-token"}}, "http://localhost:9090");
 }
 
 //Association definition Tests
