@@ -201,7 +201,7 @@ Now, utilize the available connector operations. A sample usecase is shown below
 ```ballerina
 public function main() returns error? {
     hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associations = 
-        check hubspot->/contacts/deals/labels.get();
+        check hubspot->/contacts/deals/labels;
     io:println("Contact-Deal Association definitions: ", associations);
 }
 ```

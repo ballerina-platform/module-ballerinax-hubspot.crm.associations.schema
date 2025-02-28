@@ -60,9 +60,9 @@ isolated function initClient() returns Client|error {
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testCreateAssociationDefinitions() returns error? {
     PublicAssociationDefinitionCreateRequest payload = {
-        inverseLabel: inverseLabel,
+        inverseLabel,
         name: labelName,
-        label: label
+        label
     };
     CollectionResponseAssociationSpecWithLabelNoPaging response =
         check hubspot->/[fromObjectType]/[toObjectType]/labels.post(payload);
@@ -111,7 +111,7 @@ isolated function testUpdateAssociationDefinitions() returns error? {
 @test:Config {dependsOn: [testCreateAssociationDefinitions], groups: ["live_test", "mock_test"]}
 isolated function testGetAssociationDefinitions() returns error? {
     CollectionResponseAssociationSpecWithLabelNoPaging response =
-        check hubspot->/[fromObjectType]/[toObjectType]/labels.get();
+        check hubspot->/[fromObjectType]/[toObjectType]/labels;
     test:assertTrue(response.results.length() > 0,
             msg = "No definitions were returned");
     test:assertEquals(response.results.length(), 2,
@@ -139,7 +139,7 @@ isolated function testCreateAssociationDefinitionConfigurations() returns error?
     BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload = {
         inputs: [
             {
-                typeId: typeId,
+                typeId,
                 category: "HUBSPOT_DEFINED",
                 maxToObjectIds: 2
             }
@@ -157,7 +157,7 @@ isolated function testCreateAssociationDefinitionConfigurations() returns error?
 @test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
 isolated function testGetAllDefinitionsConfigurations() returns error? {
     CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
-        check hubspot->/definitions/configurations/all.get();
+        check hubspot->/definitions/configurations/all;
     test:assertTrue(response.results.length() > 0,
             msg = "No configurations were returned.");
     test:assertEquals(response.results.length(), 2,
@@ -168,7 +168,7 @@ isolated function testGetAllDefinitionsConfigurations() returns error? {
 @test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
 isolated function testGetAssociationDefinitionConfigurations() returns error? {
     CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
-        check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType].get();
+        check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType];
     test:assertTrue(response.results.length() > 0, msg =
             "No  association definition configurations were returned.");
 }
@@ -179,7 +179,7 @@ isolated function testUpdateAssociationDefinitionConfigurations() returns error?
     BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload = {
         inputs: [
             {
-                typeId: typeId,
+                typeId,
                 category: "HUBSPOT_DEFINED",
                 maxToObjectIds: 11
             }
@@ -199,7 +199,7 @@ isolated function testDeleteAssociationDefinitionConfigurations() returns error?
     BatchInputPublicAssociationSpec payload = {
         inputs: [
             {
-                typeId: typeId,
+                typeId,
                 category: "HUBSPOT_DEFINED"
             }
         ]

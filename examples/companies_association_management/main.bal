@@ -76,7 +76,7 @@ public function main() returns error? {
 
     //Read association definitions
     hsschema:CollectionResponseAssociationSpecWithLabelNoPaging associationDefinitions =
-        check hubspot->/[fromObjectType]/[toObjectType]/labels.get();
+        check hubspot->/[fromObjectType]/[toObjectType]/labels;
     io:println("Association definitions read: \n", associationDefinitions, "\n");
 
     // ID of the created association definition

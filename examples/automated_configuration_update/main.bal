@@ -79,7 +79,7 @@ returns hsschema:BatchResponsePublicAssociationDefinitionUserConfiguration|error
 # + return - return value description
 public function getConfiguration(string fromObjectType, string toObjectType)
 returns hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
-    return hubspot->/definitions/configurations/[fromObjectType]/[toObjectType].get();
+    return hubspot->/definitions/configurations/[fromObjectType]/[toObjectType];
 }
 
 // Function to update the association definition configuration
