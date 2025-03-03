@@ -16,16 +16,13 @@
 
 import ballerina/http;
 import ballerina/oauth2;
-import ballerina/os;
 import ballerina/test;
 
-final boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
-final string serviceUrl = isLiveServer ? "https://api.hubapi.com/crm/v4/associations" :
-    "http://localhost:9090";
+configurable boolean isLiveServer = false;
 
-final string clientId = os:getEnv("HUBSPOT_CLIENT_ID");
-final string clientSecret = os:getEnv("HUBSPOT_CLIENT_SECRET");
-final string refreshToken = os:getEnv("HUBSPOT_REFRESH_TOKEN");
+configurable string clientId = "client-id";
+configurable string clientSecret = "client-secret";
+configurable string refreshToken = "refresh-token";
 
 final string fromObjectType = "contacts";
 final string toObjectType = "deals";
@@ -50,9 +47,9 @@ isolated function initClient() returns Client|error {
             refreshToken,
             credentialBearer: oauth2:POST_BODY_BEARER
         };
-        return check new Client({auth}, serviceUrl);
+        return check new Client({auth},"https://api.hubapi.com/crm/v4/associations" );
     }
-    return check new Client({auth: {token: "test-token"}}, serviceUrl);
+    return check new Client({auth: {token: "test-token"}}, "http://localhost:9090");
 }
 
 //Association definition Tests
@@ -60,9 +57,9 @@ isolated function initClient() returns Client|error {
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testCreateAssociationDefinitions() returns error? {
     PublicAssociationDefinitionCreateRequest payload = {
-        inverseLabel: inverseLabel,
+        inverseLabel,
         name: labelName,
-        label: label
+        label
     };
     CollectionResponseAssociationSpecWithLabelNoPaging response =
         check hubspot->/[fromObjectType]/[toObjectType]/labels.post(payload);
@@ -111,7 +108,7 @@ isolated function testUpdateAssociationDefinitions() returns error? {
 @test:Config {dependsOn: [testCreateAssociationDefinitions], groups: ["live_test", "mock_test"]}
 isolated function testGetAssociationDefinitions() returns error? {
     CollectionResponseAssociationSpecWithLabelNoPaging response =
-        check hubspot->/[fromObjectType]/[toObjectType]/labels.get();
+        check hubspot->/[fromObjectType]/[toObjectType]/labels;
     test:assertTrue(response.results.length() > 0,
             msg = "No definitions were returned");
     test:assertEquals(response.results.length(), 2,
@@ -139,7 +136,7 @@ isolated function testCreateAssociationDefinitionConfigurations() returns error?
     BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload = {
         inputs: [
             {
-                typeId: typeId,
+                typeId,
                 category: "HUBSPOT_DEFINED",
                 maxToObjectIds: 2
             }
@@ -157,7 +154,7 @@ isolated function testCreateAssociationDefinitionConfigurations() returns error?
 @test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
 isolated function testGetAllDefinitionsConfigurations() returns error? {
     CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
-        check hubspot->/definitions/configurations/all.get();
+        check hubspot->/definitions/configurations/all;
     test:assertTrue(response.results.length() > 0,
             msg = "No configurations were returned.");
     test:assertEquals(response.results.length(), 2,
@@ -168,7 +165,7 @@ isolated function testGetAllDefinitionsConfigurations() returns error? {
 @test:Config {dependsOn: [testCreateAssociationDefinitionConfigurations], groups: ["live_test", "mock_test"]}
 isolated function testGetAssociationDefinitionConfigurations() returns error? {
     CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging response =
-        check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType].get();
+        check hubspot->/definitions/configurations/[fromObjectType]/[toObjectType];
     test:assertTrue(response.results.length() > 0, msg =
             "No  association definition configurations were returned.");
 }
@@ -179,7 +176,7 @@ isolated function testUpdateAssociationDefinitionConfigurations() returns error?
     BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload = {
         inputs: [
             {
-                typeId: typeId,
+                typeId,
                 category: "HUBSPOT_DEFINED",
                 maxToObjectIds: 11
             }
@@ -199,7 +196,7 @@ isolated function testDeleteAssociationDefinitionConfigurations() returns error?
     BatchInputPublicAssociationSpec payload = {
         inputs: [
             {
-                typeId: typeId,
+                typeId,
                 category: "HUBSPOT_DEFINED"
             }
         ]

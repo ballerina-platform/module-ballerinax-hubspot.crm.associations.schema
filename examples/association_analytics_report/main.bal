@@ -33,7 +33,7 @@ final hsschema:Client hubspot = check new ({auth});
 // Function to count different categories of configurations
 function configurationsAnalysis() returns error? {
     hsschema:CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging getAllResponse =
-        check hubspot->/definitions/configurations/all.get();
+        check hubspot->/definitions/configurations/all;
     int hubspotDefined = 0;
     int userDefined = 0;
     int integratorDefined = 0;
@@ -62,7 +62,7 @@ function configurationsAnalysis() returns error? {
 // Function to count different categories of definitions
 function definitionsAnalysis(string fromObjectType, string toObjectType) returns error? {
     hsschema:CollectionResponseAssociationSpecWithLabelNoPaging getAssociationsResponse =
-        check hubspot->/[fromObjectType]/[toObjectType]/labels.get();
+        check hubspot->/[fromObjectType]/[toObjectType]/labels;
     int hubspotDefined = 0;
     int userDefined = 0;
     int integratorDefined = 0;
