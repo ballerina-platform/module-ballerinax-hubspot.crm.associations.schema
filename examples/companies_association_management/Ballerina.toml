@@ -4,5 +4,11 @@ name = "companies_association_management"
 version = "0.1.0"
 distribution = "2201.11.0"
 
+[[dependency]]
+org = "ballerinax"
+name = "hubspot.crm.associations.schema"
+version = "2.0.0"
+repository="local"
+
 [build-options]
 observabilityIncluded = true
