@@ -1871,7 +1871,7 @@
           },
           "label" : {
             "type" : "string",
-            "nullable": true
+            "nullable" : true
           }
         }
       },
@@ -2108,7 +2108,7 @@
           },
           "label" : {
             "type" : "string",
-            "nullable": true
+            "nullable" : true
           }
         }
       },
@@ -2126,7 +2126,7 @@
           },
           "in" : {
             "type" : "string",
-            "description" : "The name of the field or parameter in which the error was found."
+            "description" : "The name of the field or parameter in which the error was found"
           },
           "context" : {
             "type" : "object",
@@ -2157,7 +2157,7 @@
           },
           "label" : {
             "type" : "string",
-            "nullable":true
+            "nullable" : true
           },
           "category" : {
             "type" : "string",
@@ -2184,7 +2184,7 @@
           "userEnforcedMaxToObjectIds" : {
             "type" : "integer",
             "format" : "int32",
-            "nullable": true
+            "nullable" : true
           },
           "typeId" : {
             "type" : "integer",
@@ -2192,7 +2192,7 @@
           },
           "label" : {
             "type" : "string",
-            "nullable": true
+            "nullable" : true
           },
           "category" : {
             "type" : "string",
@@ -2391,12 +2391,14 @@
       "private_apps_legacy" : {
         "type" : "apiKey",
         "name" : "private-app-legacy",
-        "in" : "header"
+        "in" : "header",
+        "x-ballerina-name" : "privateAppLegacy"
       },
       "private_apps" : {
         "type" : "apiKey",
         "name" : "private-app",
-        "in" : "header"
+        "in" : "header",
+        "x-ballerina-name" : "privateApp"
       }
     }
   },
