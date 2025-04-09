@@ -30,12 +30,6 @@ public type BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors 
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
-public type PublicAssociationDefinitionCreateRequest record {
-    string inverseLabel?;
-    string name;
-    string? label;
-};
-
 public type StandardError record {
     record {} subCategory?;
     record {|string[]...;|} context;
@@ -47,8 +41,18 @@ public type StandardError record {
     string status;
 };
 
+public type PublicAssociationDefinitionCreateRequest record {
+    string inverseLabel?;
+    string name;
+    string? label;
+};
+
 public type CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging record {
     PublicAssociationDefinitionUserConfiguration[] results;
+};
+
+public type BatchInputPublicAssociationSpec record {
+    PublicAssociationSpec[] inputs;
 };
 
 public type BatchResponsePublicAssociationDefinitionConfigurationUpdateResult record {
@@ -58,10 +62,6 @@ public type BatchResponsePublicAssociationDefinitionConfigurationUpdateResult re
     record {|string...;|} links?;
     PublicAssociationDefinitionConfigurationUpdateResult[] results;
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
-};
-
-public type BatchInputPublicAssociationSpec record {
-    PublicAssociationSpec[] inputs;
 };
 
 public type PublicAssociationDefinitionConfigurationUpdateResult record {
@@ -82,19 +82,6 @@ public type PublicAssociationDefinitionConfigurationCreateRequest record {
     int:Signed32 maxToObjectIds;
 };
 
-# Proxy server configurations to be used with the HTTP client endpoint.
-public type ProxyConfig record {|
-    # Host name of the proxy server
-    string host = "";
-    # Proxy server port
-    int port = 0;
-    # Proxy server username
-    string userName = "";
-    # Proxy server password
-    @display {label: "", kind: "password"}
-    string password = "";
-|};
-
 public type PublicAssociationDefinitionUpdateRequest record {
     string inverseLabel?;
     int:Signed32 associationTypeId;
@@ -106,7 +93,7 @@ public type ErrorDetail record {
     string subCategory?;
     # The status code associated with the error detail
     string code?;
-    # The name of the field or parameter in which the error was found.
+    # The name of the field or parameter in which the error was found
     string 'in?;
     # Context about the error condition
     record {|string[]...;|} context?;
@@ -131,16 +118,6 @@ public type PublicAssociationDefinitionUserConfiguration record {
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
-# Provides settings related to HTTP/1.x protocol.
-public type ClientHttp1Settings record {|
-    # Specifies whether to reuse a connection for multiple requests
-    http:KeepAlive keepAlive = http:KEEPALIVE_AUTO;
-    # The chunking behaviour of the request
-    http:Chunking chunking = http:CHUNKING_AUTO;
-    # Proxy server related options
-    ProxyConfig proxy?;
-|};
-
 public type BatchResponsePublicAssociationDefinitionUserConfiguration record {
     string completedAt;
     string requestedAt?;
@@ -161,13 +138,10 @@ public type BatchInputPublicAssociationDefinitionConfigurationUpdateRequest reco
     PublicAssociationDefinitionConfigurationUpdateRequest[] inputs;
 };
 
-# Provides API key configurations needed when communicating with a remote HTTP endpoint. 
-# + private\-app\-legacy - The API key used for legacy private app authentication. 
-# + private\-app - The API key used for private app authentication.
-
+# Provides API key configurations needed when communicating with a remote HTTP endpoint.
 public type ApiKeysConfig record {|
-    string private\-app\-legacy;
-    string private\-app;
+    string privateAppLegacy;
+    string privateApp;
 |};
 
 public type BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors record {
@@ -189,29 +163,35 @@ public type ConnectionConfig record {|
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
-    ClientHttp1Settings http1Settings?;
+    http:ClientHttp1Settings http1Settings = {};
     # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings?;
+    http:ClientHttp2Settings http2Settings = {};
     # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 60;
+    decimal timeout = 30;
     # The choice of setting `forwarded`/`x-forwarded` header
     string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
     # Configurations associated with request pooling
     http:PoolConfiguration poolConfig?;
     # HTTP caching related configurations
-    http:CacheConfig cache?;
+    http:CacheConfig cache = {};
     # Specifies the way of handling compression (`accept-encoding`) header
     http:Compression compression = http:COMPRESSION_AUTO;
     # Configurations associated with the behaviour of the Circuit Breaker
     http:CircuitBreakerConfig circuitBreaker?;
     # Configurations associated with retrying
     http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
     # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits?;
+    http:ResponseLimitConfigs responseLimits = {};
     # SSL/TLS-related options
     http:ClientSecureSocket secureSocket?;
     # Proxy server related options
     http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
     # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
     boolean validation = true;
     # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 

@@ -22,88 +22,32 @@ import ballerina/http;
 public isolated client class Client {
     final http:Client clientEp;
     final readonly & ApiKeysConfig? apiKeyConfig;
-
     # Gets invoked to initialize the `connector`.
     #
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
     # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config,
-            string serviceUrl = "https://api.hubapi.com/crm/v4/associations") returns error? {
-        http:ClientConfiguration httpClientConfig = {
-            httpVersion: config.httpVersion,
-            timeout: config.timeout,
-            forwarded: config.forwarded,
-            poolConfig: config.poolConfig,
-            compression: config.compression,
-            circuitBreaker: config.circuitBreaker,
-            retryConfig: config.retryConfig,
-            validation: config.validation
-        };
-        do {
-            if config.http1Settings is ClientHttp1Settings {
-                ClientHttp1Settings settings = check config.http1Settings.ensureType(ClientHttp1Settings);
-                httpClientConfig.http1Settings = {...settings};
-            }
-            if config.http2Settings is http:ClientHttp2Settings {
-                httpClientConfig.http2Settings = check config.http2Settings.ensureType(http:ClientHttp2Settings);
-            }
-            if config.cache is http:CacheConfig {
-                httpClientConfig.cache = check config.cache.ensureType(http:CacheConfig);
-            }
-            if config.responseLimits is http:ResponseLimitConfigs {
-                httpClientConfig.responseLimits = check config.responseLimits.ensureType(http:ResponseLimitConfigs);
-            }
-            if config.secureSocket is http:ClientSecureSocket {
-                httpClientConfig.secureSocket = check config.secureSocket.ensureType(http:ClientSecureSocket);
-            }
-            if config.proxy is http:ProxyConfig {
-                httpClientConfig.proxy = check config.proxy.ensureType(http:ProxyConfig);
-            }
-        }
+    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com/crm/v4/associations") returns error? {
+        http:ClientConfiguration httpClientConfig = {httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
         if config.auth is ApiKeysConfig {
             self.apiKeyConfig = (<ApiKeysConfig>config.auth).cloneReadOnly();
         } else {
             httpClientConfig.auth = <http:BearerTokenConfig|OAuth2RefreshTokenGrantConfig>config.auth;
             self.apiKeyConfig = ();
         }
-        http:Client httpEp = check new (serviceUrl, httpClientConfig);
-        self.clientEp = httpEp;
-        return;
+        self.clientEp = check new (serviceUrl, httpClientConfig);
     }
 
-    # Delete an association definition by ID
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - No content 
-    resource isolated function delete
-    [string fromObjectType]/[string toObjectType]/labels/[int:Signed32 associationTypeId]
-            (map<string|string[]> headers = {})
-    returns http:Response|error {
-        string resourcePath = string
-        `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels/${getEncodedUri(associationTypeId)}`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-        }
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Retrieve all association labels between two object types.
+    # Retrieve all association definitions and configurations
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function get
-    [string fromObjectType]/[string toObjectType]/labels
-            (map<string|string[]> headers = {})
-    returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
-        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
+    resource isolated function get definitions/configurations/all(map<string|string[]> headers = {}) returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
+        string resourcePath = string `/definitions/configurations/all`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         return self.clientEp->get(resourcePath, httpHeaders);
@@ -113,52 +57,27 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function get
-    definitions/configurations/[string fromObjectType]/[string toObjectType]
-            (map<string|string[]> headers = {})
-    returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
-        string resourcePath = string
-        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}`;
+    resource isolated function get definitions/configurations/[string fromObjectType]/[string toObjectType](map<string|string[]> headers = {}) returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
+        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Retrieve all association definitions and configurations
+    # Batch create association configurations between two object types.
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function get
-    definitions/configurations/all
-            (map<string|string[]> headers = {})
-    returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
-        string resourcePath = string `/definitions/configurations/all`;
+    resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/create(BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload, map<string|string[]> headers = {}) returns BatchResponsePublicAssociationDefinitionUserConfiguration|BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors|error {
+        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/create`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-        }
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        return self.clientEp->get(resourcePath, httpHeaders);
-    }
-
-    # Create a user-defined association definition
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - successful operation 
-    resource isolated function post
-    [string fromObjectType]/[string toObjectType]/labels
-            (PublicAssociationDefinitionCreateRequest payload, map<string|string[]> headers = {})
-    returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
-        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         http:Request request = new;
@@ -167,21 +86,49 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Batch create association configurations between two object types.
+    # Retrieve all association labels between two object types.
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post
-    definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/create
-            (BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload, map<string|string[]> headers = {})
-    returns BatchResponsePublicAssociationDefinitionUserConfiguration|
-    BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors|error {
-        string resourcePath = string
-        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/create`;
+    resource isolated function get [string fromObjectType]/[string toObjectType]/labels(map<string|string[]> headers = {}) returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
+        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+        }
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        return self.clientEp->get(resourcePath, httpHeaders);
+    }
+
+    # Update a user-defined association definition
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - No content 
+    resource isolated function put [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionUpdateRequest payload, map<string|string[]> headers = {}) returns error? {
+        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+        }
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        http:Request request = new;
+        json jsonBody = payload.toJson();
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->put(resourcePath, request, httpHeaders);
+    }
+
+    # Create a user-defined association definition
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - successful operation 
+    resource isolated function post [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionCreateRequest payload, map<string|string[]> headers = {}) returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
+        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         http:Request request = new;
@@ -194,65 +141,50 @@ public isolated client class Client {
     #
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function post
-    definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge
-            (BatchInputPublicAssociationSpec payload, map<string|string[]> headers = {})
-    returns http:Response|error {
-        string resourcePath = string
-        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/purge`;
+    resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge(BatchInputPublicAssociationSpec payload, map<string|string[]> headers = {}) returns error? {
+        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/purge`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, httpHeaders);
+    }
+
+    # Delete an association definition by ID
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - No content 
+    resource isolated function delete [string fromObjectType]/[string toObjectType]/labels/[int:Signed32 associationTypeId](map<string|string[]> headers = {}) returns error? {
+        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels/${getEncodedUri(associationTypeId)}`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+        }
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
     # Batch update configurations between two object types
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
-    resource isolated function post
-    definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update
-            (BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload, map<string|string[]> headers = {})
-    returns BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|
-    BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors|error {
-        string resourcePath = string
-        `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/update`;
+    resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update(BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload, map<string|string[]> headers = {}) returns BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors|error {
+        string resourcePath = string `/definitions/configurations/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/batch/update`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, httpHeaders);
-    }
-
-    # Update a user-defined association definition
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - No content 
-    resource isolated function put
-    [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionUpdateRequest payload,
-            map<string|string[]> headers = {})
-    returns http:Response|error {
-        string resourcePath = string `/${getEncodedUri(fromObjectType)}/${getEncodedUri(toObjectType)}/labels`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-        }
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        http:Request request = new;
-        json jsonBody = payload.toJson();
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->put(resourcePath, request, httpHeaders);
     }
 }
