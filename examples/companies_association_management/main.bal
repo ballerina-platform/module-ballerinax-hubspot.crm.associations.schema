@@ -14,7 +14,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/http;
 import ballerina/io;
 import ballerina/oauth2;
 import ballerinax/hubspot.crm.associations.schema as hsschema;
@@ -88,16 +87,15 @@ public function main() returns error? {
         createAssociationDefinitionUpdatePayload(associationId, newLabel, newInverseLabel);
 
     // Update the association definition
-    http:Response updateStatus = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(UpdatePayload);
-    if updateStatus.statusCode == 204 {
+    error? updateStatus = check hubspot->/[fromObjectType]/[toObjectType]/labels.put(UpdatePayload);
+    if updateStatus == () {
         io:println("Association label updated successfully\n");
     }
 
     // Delete the association definition
-    http:Response deleteStatus = check hubspot->/[fromObjectType]/[toObjectType]/labels/[associationId].delete();
-    http:Response inversDeleteStatus =
-        check hubspot->/[fromObjectType]/[toObjectType]/labels/[inverseAssociationId].delete();
-    if deleteStatus.statusCode == 204 && inversDeleteStatus.statusCode == 204 {
+    error? deleteStatus = check hubspot->/[fromObjectType]/[toObjectType]/labels/[associationId].delete();
+    error? inversDeleteStatus = hubspot->/[fromObjectType]/[toObjectType]/labels/[inverseAssociationId].delete();
+    if deleteStatus == () && inversDeleteStatus == () {
         io:println("Association definition with ID ", associationId, " has been deleted.");
     }
 }
