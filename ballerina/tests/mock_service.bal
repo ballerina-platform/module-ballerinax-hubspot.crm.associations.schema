@@ -122,13 +122,9 @@ service on new http:Listener(9090) {
         };
     }
 
-    resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge
-            (@http:Payload BatchInputPublicAssociationSpec payload)
-    returns http:NoContent|http:BadRequest|http:MultiStatus {
-        if payload.inputs[0].typeId == 5 {
-            return http:BAD_REQUEST;
-        }
-        return http:NO_CONTENT;
+    resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge(BatchInputPublicAssociationSpec payload)
+        returns error? {
+        return payload.inputs[0].typeId == 5 ? error("Error occurred") : ();
     }
 
     resource function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update
@@ -156,12 +152,8 @@ service on new http:Listener(9090) {
         };
     }
 
-    resource function put [string fromObjectType]/[string toObjectType]/labels
-            (@http:Payload PublicAssociationDefinitionUpdateRequest payload)
-    returns http:NoContent|http:BadRequest {
-        if payload.label == null || payload.associationTypeId == -1 {
-            return http:BAD_REQUEST;
-        }
-        return http:NO_CONTENT;
+    resource function put [string fromObjectType]/[string toObjectType]/labels(@http:Payload PublicAssociationDefinitionUpdateRequest payload)
+        returns error? {
+        return payload.label == null || payload.associationTypeId == -1 ? error("Error occurred") : ();
     }
 }
