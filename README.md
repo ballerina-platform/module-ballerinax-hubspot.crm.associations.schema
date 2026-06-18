@@ -2,13 +2,13 @@
 
 [![Build](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/actions/workflows/ci.yml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.associations.schema/commits/master)
-[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/hubspot.crm.associations.schema.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%hubspot.crm.associations.schema)
+[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/hubspot.crm.associations.schema.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%2Fhubspot.crm.associations.schema)
 
 ## Overview
 
 [HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
-The `ballerinax/module-ballerinax-hubspot.crm.associations.schema` connector offers APIs to connect and interact with the [Hubspot Associations Schema API](https://developers.hubspot.com/docs/reference/api/crm/associations/associations-schema) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api).
+The `ballerinax/module-ballerinax-hubspot.crm.associations.schema` connector offers APIs to connect and interact with the [HubSpot Associations Schema API](https://developers.hubspot.com/docs/reference/api/crm/associations/associations-schema) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api).
 
 ## Setup guide
 
@@ -162,7 +162,7 @@ Replace the `<YOUR_REFRESH_TOKEN>`, `<YOUR_CLIENT_ID>`, and `<YOUR_CLIENT_SECRET
 
 ## Quickstart
 
-To use the `Hubspot CRM Associations Schema` connector in your Ballerina application, update the `.bal` file as follows:
+To use the `HubSpot CRM Associations Schema` connector in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
 

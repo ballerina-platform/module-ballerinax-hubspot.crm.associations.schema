@@ -2,7 +2,7 @@
 
 [HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
-The HubSpot connector offers APIs to connect and interact with the [Hubspot Associations Schema API](https://developers.hubspot.com/docs/reference/api/crm/associations/associations-schema) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api).
+The HubSpot connector offers APIs to connect and interact with the [HubSpot Associations Schema API](https://developers.hubspot.com/docs/reference/api/crm/associations/associations-schema) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api).
 
 ### Key Features
 
@@ -163,7 +163,7 @@ Replace the `<YOUR_REFRESH_TOKEN>`, `<YOUR_CLIENT_ID>`, and `<YOUR_CLIENT_SECRET
 
 ## Quickstart
 
-To use the `Hubspot CRM Associations Schema` connector in your Ballerina application, update the `.bal` file as follows:
+To use the `HubSpot CRM Associations Schema` connector in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
 
