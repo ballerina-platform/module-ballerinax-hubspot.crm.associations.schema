@@ -19,75 +19,124 @@
 
 import ballerina/http;
 
+# Batch response containing association definition user configurations, processing status, and any errors encountered.
 public type BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors record {
+    # Timestamp when the batch operation completed.
     string completedAt;
+    # Total number of errors encountered in the batch operation.
     int:Signed32 numErrors?;
+    # Timestamp when the batch operation was requested.
     string requestedAt?;
+    # Timestamp when the batch operation began processing.
     string startedAt;
+    # Map of relevant navigational links related to the batch response.
     record {|string...;|} links?;
+    # Array of successfully processed association definition user configurations.
     PublicAssociationDefinitionUserConfiguration[] results;
+    # Array of standard errors encountered during batch processing.
     StandardError[] errors?;
+    # Current processing status of the batch operation.
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
+# Structured error object containing category, message, context, and detail information for a failed operation.
 public type StandardError record {
+    # Optional object providing additional subcategory classification for the error.
     record {} subCategory?;
+    # Key-value map of contextual metadata associated with the error.
     record {|string[]...;|} context;
+    # Map of relevant links providing additional error reference resources.
     record {|string...;|} links;
+    # Unique identifier for the error instance.
     string id?;
+    # High-level category classifying the type of error.
     string category;
+    # Human-readable description of the error.
     string message;
+    # List of detailed error information objects.
     ErrorDetail[] errors;
+    # The HTTP status description of the error response.
     string status;
 };
 
+# Request payload for creating a new association definition, including its name and display labels.
 public type PublicAssociationDefinitionCreateRequest record {
+    # Display label for the inverse direction of the association.
     string inverseLabel?;
+    # Unique internal name identifying the association definition.
     string name;
+    # Human-readable display label for the association definition.
     string? label;
 };
 
+# Unpaged collection of association definition user configurations.
 public type CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging record {
     PublicAssociationDefinitionUserConfiguration[] results;
 };
 
+# Batch input wrapper containing a list of association specs to process.
 public type BatchInputPublicAssociationSpec record {
+    # List of association specs to include in the batch operation.
     PublicAssociationSpec[] inputs;
 };
 
+# Batch response containing results and status for association definition configuration update operations.
 public type BatchResponsePublicAssociationDefinitionConfigurationUpdateResult record {
+    # Timestamp indicating when the batch operation completed.
     string completedAt;
+    # Timestamp indicating when the batch operation was requested.
     string requestedAt?;
+    # Timestamp indicating when the batch operation started processing.
     string startedAt;
+    # Map of relevant link names to associated URIs for the batch response.
     record {|string...;|} links?;
+    # List of association definition configuration update results.
     PublicAssociationDefinitionConfigurationUpdateResult[] results;
+    # Current processing status of the batch operation.
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
+# Result of an association definition configuration update, including type, category, and enforced limits.
 public type PublicAssociationDefinitionConfigurationUpdateResult record {
+    # Maximum number of target object IDs enforced for this association type.
     int:Signed32 userEnforcedMaxToObjectIds?;
+    # Numeric identifier of the association type.
     int:Signed32 typeId;
+    # Category indicating who defined the association type.
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
+# Request payload for updating an association definition configuration, specifying type, category, and object limit.
 public type PublicAssociationDefinitionConfigurationUpdateRequest record {
+    # Numeric identifier of the association type to update.
     int:Signed32 typeId;
+    # The category of the association definition to update.
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
+    # Maximum number of target objects allowed in this association.
     int:Signed32 maxToObjectIds;
 };
 
+# Request body for creating a configuration for an association definition, specifying its type, category, and object limit.
 public type PublicAssociationDefinitionConfigurationCreateRequest record {
+    # The numeric ID of the association type to configure.
     int:Signed32 typeId;
+    # The category of the association definition to configure.
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
+    # Maximum number of target objects allowed in this association.
     int:Signed32 maxToObjectIds;
 };
 
+# Request body for updating an association definition's label and optional inverse label.
 public type PublicAssociationDefinitionUpdateRequest record {
+    # The inverse label for the reverse direction of the association.
     string inverseLabel?;
+    # The numeric ID of the association type to update.
     int:Signed32 associationTypeId;
+    # The display label for the association definition. Nullable.
     string? label;
 };
 
+# Detailed error information including message, code, field location, category, and remediation context.
 public type ErrorDetail record {
     # A specific category that contains more specific detail about the error
     string subCategory?;
@@ -101,29 +150,47 @@ public type ErrorDetail record {
     string message;
 };
 
+# An association type specification including its numeric ID, category, and optional display label.
 public type AssociationSpecWithLabel record {
+    # The numeric ID identifying the association type.
     int:Signed32 typeId;
+    # The display label for the association type. Nullable.
     string? label?;
+    # The category classifying the origin of the association type.
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
+# A non-paginated collection of association type specifications with labels.
 public type CollectionResponseAssociationSpecWithLabelNoPaging record {
+    # Array of association type specifications returned in the response.
     AssociationSpecWithLabel[] results;
 };
 
+# User-defined configuration for an association definition, including type, category, label, and enforced object limit.
 public type PublicAssociationDefinitionUserConfiguration record {
+    # User-enforced maximum number of target objects. Nullable.
     int:Signed32? userEnforcedMaxToObjectIds?;
+    # The numeric ID identifying the association type.
     int:Signed32 typeId;
+    # Custom display label for the association definition.
     string? label?;
+    # The origin category of the association definition: HubSpot-defined, user-defined, or integrator-defined.
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
+# Batch response containing user configuration details for multiple association definitions, including processing status and timestamps.
 public type BatchResponsePublicAssociationDefinitionUserConfiguration record {
+    # Timestamp when the batch operation completed.
     string completedAt;
+    # Timestamp when the batch operation was requested.
     string requestedAt?;
+    # Timestamp when the batch operation started processing.
     string startedAt;
+    # Map of relevant hypermedia links associated with the batch response.
     record {|string...;|} links?;
+    # Array of association definition user configuration objects returned by the batch operation.
     PublicAssociationDefinitionUserConfiguration[] results;
+    # Current processing status of the batch operation.
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
@@ -134,7 +201,9 @@ public type OAuth2RefreshTokenGrantConfig record {|
     string refreshUrl = "https://api.hubapi.com/oauth/v1/token";
 |};
 
+# Batch input payload containing a list of association definition configuration update requests.
 public type BatchInputPublicAssociationDefinitionConfigurationUpdateRequest record {
+    # Array of association definition configuration update requests to process in batch.
     PublicAssociationDefinitionConfigurationUpdateRequest[] inputs;
 };
 
@@ -144,14 +213,23 @@ public type ApiKeysConfig record {|
     string privateApp;
 |};
 
+# Batch response for association definition configuration updates, including results, errors, and processing status.
 public type BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors record {
+    # Timestamp when the batch update operation completed.
     string completedAt;
+    # Total number of errors encountered during the batch operation.
     int:Signed32 numErrors?;
+    # Timestamp when the batch update operation was requested.
     string requestedAt?;
+    # Timestamp when the batch update operation started processing.
     string startedAt;
+    # Map of relevant hypermedia links associated with the batch response.
     record {|string...;|} links?;
+    # Array of association definition configuration update results from the batch operation.
     PublicAssociationDefinitionConfigurationUpdateResult[] results;
+    # Array of standard errors encountered during the batch update operation.
     StandardError[] errors?;
+    # Current processing status of the batch update operation.
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
@@ -199,11 +277,16 @@ public type ConnectionConfig record {|
     boolean laxDataBinding = true;
 |};
 
+# Batch input wrapper containing an array of association definition configuration create requests.
 public type BatchInputPublicAssociationDefinitionConfigurationCreateRequest record {
+    # Array of association definition configuration create requests to process in batch.
     PublicAssociationDefinitionConfigurationCreateRequest[] inputs;
 };
 
+# Specifies an association type by its numeric ID and category classification.
 public type PublicAssociationSpec record {
+    # Numeric identifier for the association type.
     int:Signed32 typeId;
+    # Category classification of the association type.
     string category;
 };
