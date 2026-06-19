@@ -19,124 +19,124 @@
 
 import ballerina/http;
 
-# Batch response containing association definition user configurations, processing status, and any errors encountered.
+# Batch response containing association definition user configurations, processing status, and any errors encountered
 public type BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors record {
-    # Timestamp when the batch operation completed.
+    # Timestamp when the batch operation completed
     string completedAt;
-    # Total number of errors encountered in the batch operation.
+    # Total number of errors encountered in the batch operation
     int:Signed32 numErrors?;
-    # Timestamp when the batch operation was requested.
+    # Timestamp when the batch operation was requested
     string requestedAt?;
-    # Timestamp when the batch operation began processing.
+    # Timestamp when the batch operation began processing
     string startedAt;
-    # Map of relevant navigational links related to the batch response.
+    # Map of relevant navigational links related to the batch response
     record {|string...;|} links?;
-    # Array of successfully processed association definition user configurations.
+    # Array of successfully processed association definition user configurations
     PublicAssociationDefinitionUserConfiguration[] results;
-    # Array of standard errors encountered during batch processing.
+    # Array of standard errors encountered during batch processing
     StandardError[] errors?;
-    # Current processing status of the batch operation.
+    # Current processing status of the batch operation
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
-# Structured error object containing category, message, context, and detail information for a failed operation.
+# Structured error object containing category, message, context, and detail information for a failed operation
 public type StandardError record {
-    # Optional object providing additional subcategory classification for the error.
+    # Optional object providing additional subcategory classification for the error
     record {} subCategory?;
-    # Key-value map of contextual metadata associated with the error.
+    # Key-value map of contextual metadata associated with the error
     record {|string[]...;|} context;
-    # Map of relevant links providing additional error reference resources.
+    # Map of relevant links providing additional error reference resources
     record {|string...;|} links;
-    # Unique identifier for the error instance.
+    # Unique identifier for the error instance
     string id?;
-    # High-level category classifying the type of error.
+    # High-level category classifying the type of error
     string category;
-    # Human-readable description of the error.
+    # Human-readable description of the error
     string message;
-    # List of detailed error information objects.
+    # List of detailed error information objects
     ErrorDetail[] errors;
-    # The HTTP status description of the error response.
+    # The HTTP status description of the error response
     string status;
 };
 
-# Request payload for creating a new association definition, including its name and display labels.
+# Request payload for creating a new association definition, including its name and display labels
 public type PublicAssociationDefinitionCreateRequest record {
-    # Display label for the inverse direction of the association.
+    # Display label for the inverse direction of the association
     string inverseLabel?;
-    # Unique internal name identifying the association definition.
+    # Unique internal name identifying the association definition
     string name;
-    # Human-readable display label for the association definition.
+    # Human-readable display label for the association definition
     string? label;
 };
 
-# Unpaged collection of association definition user configurations.
+# Unpaged collection of association definition user configurations
 public type CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging record {
     PublicAssociationDefinitionUserConfiguration[] results;
 };
 
-# Batch input wrapper containing a list of association specs to process.
+# Batch input wrapper containing a list of association specs to process
 public type BatchInputPublicAssociationSpec record {
-    # List of association specs to include in the batch operation.
+    # List of association specs to include in the batch operation
     PublicAssociationSpec[] inputs;
 };
 
-# Batch response containing results and status for association definition configuration update operations.
+# Batch response containing results and status for association definition configuration update operations
 public type BatchResponsePublicAssociationDefinitionConfigurationUpdateResult record {
-    # Timestamp indicating when the batch operation completed.
+    # Timestamp indicating when the batch operation completed
     string completedAt;
-    # Timestamp indicating when the batch operation was requested.
+    # Timestamp indicating when the batch operation was requested
     string requestedAt?;
-    # Timestamp indicating when the batch operation started processing.
+    # Timestamp indicating when the batch operation started processing
     string startedAt;
-    # Map of relevant link names to associated URIs for the batch response.
+    # Map of relevant link names to associated URIs for the batch response
     record {|string...;|} links?;
-    # List of association definition configuration update results.
+    # List of association definition configuration update results
     PublicAssociationDefinitionConfigurationUpdateResult[] results;
-    # Current processing status of the batch operation.
+    # Current processing status of the batch operation
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
-# Result of an association definition configuration update, including type, category, and enforced limits.
+# Result of an association definition configuration update, including type, category, and enforced limits
 public type PublicAssociationDefinitionConfigurationUpdateResult record {
-    # Maximum number of target object IDs enforced for this association type.
+    # Maximum number of target object IDs enforced for this association type
     int:Signed32 userEnforcedMaxToObjectIds?;
-    # Numeric identifier of the association type.
+    # Numeric identifier of the association type
     int:Signed32 typeId;
-    # Category indicating who defined the association type.
+    # Category indicating who defined the association type
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
-# Request payload for updating an association definition configuration, specifying type, category, and object limit.
+# Request payload for updating an association definition configuration, specifying type, category, and object limit
 public type PublicAssociationDefinitionConfigurationUpdateRequest record {
-    # Numeric identifier of the association type to update.
+    # Numeric identifier of the association type to update
     int:Signed32 typeId;
-    # The category of the association definition to update.
+    # The category of the association definition to update
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
-    # Maximum number of target objects allowed in this association.
+    # Maximum number of target objects allowed in this association
     int:Signed32 maxToObjectIds;
 };
 
-# Request body for creating a configuration for an association definition, specifying its type, category, and object limit.
+# Request body for creating a configuration for an association definition, specifying its type, category, and object limit
 public type PublicAssociationDefinitionConfigurationCreateRequest record {
-    # The numeric ID of the association type to configure.
+    # The numeric ID of the association type to configure
     int:Signed32 typeId;
-    # The category of the association definition to configure.
+    # The category of the association definition to configure
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
-    # Maximum number of target objects allowed in this association.
+    # Maximum number of target objects allowed in this association
     int:Signed32 maxToObjectIds;
 };
 
-# Request body for updating an association definition's label and optional inverse label.
+# Request body for updating an association definition's label and optional inverse label
 public type PublicAssociationDefinitionUpdateRequest record {
-    # The inverse label for the reverse direction of the association.
+    # The inverse label for the reverse direction of the association
     string inverseLabel?;
-    # The numeric ID of the association type to update.
+    # The numeric ID of the association type to update
     int:Signed32 associationTypeId;
-    # The display label for the association definition. Nullable.
+    # The display label for the association definition. Nullable
     string? label;
 };
 
-# Detailed error information including message, code, field location, category, and remediation context.
+# Detailed error information including message, code, field location, category, and remediation context
 public type ErrorDetail record {
     # A specific category that contains more specific detail about the error
     string subCategory?;
@@ -150,47 +150,47 @@ public type ErrorDetail record {
     string message;
 };
 
-# An association type specification including its numeric ID, category, and optional display label.
+# An association type specification including its numeric ID, category, and optional display label
 public type AssociationSpecWithLabel record {
-    # The numeric ID identifying the association type.
+    # The numeric ID identifying the association type
     int:Signed32 typeId;
-    # The display label for the association type. Nullable.
+    # The display label for the association type. Nullable
     string? label?;
-    # The category classifying the origin of the association type.
+    # The category classifying the origin of the association type
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
-# A non-paginated collection of association type specifications with labels.
+# A non-paginated collection of association type specifications with labels
 public type CollectionResponseAssociationSpecWithLabelNoPaging record {
-    # Array of association type specifications returned in the response.
+    # Array of association type specifications returned in the response
     AssociationSpecWithLabel[] results;
 };
 
-# User-defined configuration for an association definition, including type, category, label, and enforced object limit.
+# User-defined configuration for an association definition, including type, category, label, and enforced object limit
 public type PublicAssociationDefinitionUserConfiguration record {
-    # User-enforced maximum number of target objects. Nullable.
+    # User-enforced maximum number of target objects. Nullable
     int:Signed32? userEnforcedMaxToObjectIds?;
-    # The numeric ID identifying the association type.
+    # The numeric ID identifying the association type
     int:Signed32 typeId;
-    # Custom display label for the association definition.
+    # Custom display label for the association definition
     string? label?;
-    # The origin category of the association definition: HubSpot-defined, user-defined, or integrator-defined.
+    # The origin category of the association definition: HubSpot-defined, user-defined, or integrator-defined
     "HUBSPOT_DEFINED"|"USER_DEFINED"|"INTEGRATOR_DEFINED" category;
 };
 
-# Batch response containing user configuration details for multiple association definitions, including processing status and timestamps.
+# Batch response containing user configuration details for multiple association definitions, including processing status and timestamps
 public type BatchResponsePublicAssociationDefinitionUserConfiguration record {
-    # Timestamp when the batch operation completed.
+    # Timestamp when the batch operation completed
     string completedAt;
-    # Timestamp when the batch operation was requested.
+    # Timestamp when the batch operation was requested
     string requestedAt?;
-    # Timestamp when the batch operation started processing.
+    # Timestamp when the batch operation started processing
     string startedAt;
-    # Map of relevant hypermedia links associated with the batch response.
+    # Map of relevant hypermedia links associated with the batch response
     record {|string...;|} links?;
-    # Array of association definition user configuration objects returned by the batch operation.
+    # Array of association definition user configuration objects returned by the batch operation
     PublicAssociationDefinitionUserConfiguration[] results;
-    # Current processing status of the batch operation.
+    # Current processing status of the batch operation
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
@@ -201,42 +201,42 @@ public type OAuth2RefreshTokenGrantConfig record {|
     string refreshUrl = "https://api.hubapi.com/oauth/v1/token";
 |};
 
-# Batch input payload containing a list of association definition configuration update requests.
+# Batch input payload containing a list of association definition configuration update requests
 public type BatchInputPublicAssociationDefinitionConfigurationUpdateRequest record {
-    # Array of association definition configuration update requests to process in batch.
+    # Array of association definition configuration update requests to process in batch
     PublicAssociationDefinitionConfigurationUpdateRequest[] inputs;
 };
 
-# Provides API key configurations needed when communicating with a remote HTTP endpoint.
+# Provides API key configurations needed when communicating with a remote HTTP endpoint
 public type ApiKeysConfig record {|
     string privateAppLegacy;
     string privateApp;
 |};
 
-# Batch response for association definition configuration updates, including results, errors, and processing status.
+# Batch response for association definition configuration updates, including results, errors, and processing status
 public type BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors record {
-    # Timestamp when the batch update operation completed.
+    # Timestamp when the batch update operation completed
     string completedAt;
-    # Total number of errors encountered during the batch operation.
+    # Total number of errors encountered during the batch operation
     int:Signed32 numErrors?;
-    # Timestamp when the batch update operation was requested.
+    # Timestamp when the batch update operation was requested
     string requestedAt?;
-    # Timestamp when the batch update operation started processing.
+    # Timestamp when the batch update operation started processing
     string startedAt;
-    # Map of relevant hypermedia links associated with the batch response.
+    # Map of relevant hypermedia links associated with the batch response
     record {|string...;|} links?;
-    # Array of association definition configuration update results from the batch operation.
+    # Array of association definition configuration update results from the batch operation
     PublicAssociationDefinitionConfigurationUpdateResult[] results;
-    # Array of standard errors encountered during the batch update operation.
+    # Array of standard errors encountered during the batch update operation
     StandardError[] errors?;
-    # Current processing status of the batch update operation.
+    # Current processing status of the batch update operation
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
+# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
-    # Provides Auth configurations needed when communicating with a remote HTTP endpoint.
+    # Provides Auth configurations needed when communicating with a remote HTTP endpoint
     http:BearerTokenConfig|OAuth2RefreshTokenGrantConfig|ApiKeysConfig auth;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
@@ -273,20 +273,20 @@ public type ConnectionConfig record {|
     # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
     boolean validation = true;
     # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
+    # and absent fields are handled as `nilable` types. Enabled by default
     boolean laxDataBinding = true;
 |};
 
-# Batch input wrapper containing an array of association definition configuration create requests.
+# Batch input wrapper containing an array of association definition configuration create requests
 public type BatchInputPublicAssociationDefinitionConfigurationCreateRequest record {
-    # Array of association definition configuration create requests to process in batch.
+    # Array of association definition configuration create requests to process in batch
     PublicAssociationDefinitionConfigurationCreateRequest[] inputs;
 };
 
-# Specifies an association type by its numeric ID and category classification.
+# Specifies an association type by its numeric ID and category classification
 public type PublicAssociationSpec record {
-    # Numeric identifier for the association type.
+    # Numeric identifier for the association type
     int:Signed32 typeId;
-    # Category classification of the association type.
+    # Category classification of the association type
     string category;
 };
