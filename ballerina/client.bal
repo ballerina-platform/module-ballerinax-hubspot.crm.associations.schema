@@ -23,7 +23,7 @@ import ballerina/http;
 public isolated client class Client {
     final http:Client clientEp;
     final readonly & ApiKeysConfig? apiKeyConfig;
-    # Gets invoked to initialize the `connector`.
+    # Gets invoked to initialize the `connector`
     #
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
@@ -39,7 +39,7 @@ public isolated client class Client {
         self.clientEp = check new (serviceUrl, httpClientConfig);
     }
 
-    # Retrieve all association definitions and configurations
+    # Retrieve all association definitions
     #
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
@@ -54,8 +54,10 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Retrieve association configurations between two object types.
+    # Get configs between two object types
     #
+    # + fromObjectType - The source CRM object type for which to retrieve association configurations
+    # + toObjectType - The target CRM object type for which to retrieve association configurations
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
     resource isolated function get definitions/configurations/[string fromObjectType]/[string toObjectType](map<string|string[]> headers = {}) returns CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging|error {
@@ -69,8 +71,10 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Batch create association configurations between two object types.
+    # Batch create association configs
     #
+    # + fromObjectType - The source CRM object type for the batch association configuration creation
+    # + toObjectType - The target CRM object type for the batch association configuration creation
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
     resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/create(BatchInputPublicAssociationDefinitionConfigurationCreateRequest payload, map<string|string[]> headers = {}) returns BatchResponsePublicAssociationDefinitionUserConfiguration|BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors|error {
@@ -87,8 +91,10 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Retrieve all association labels between two object types.
+    # Retrieve all association labels
     #
+    # + fromObjectType - The source CRM object type for which to retrieve association labels
+    # + toObjectType - The target CRM object type for which to retrieve association labels
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
     resource isolated function get [string fromObjectType]/[string toObjectType]/labels(map<string|string[]> headers = {}) returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
@@ -102,8 +108,10 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Update a user-defined association definition
+    # Update an association definition
     #
+    # + fromObjectType - The source CRM object type for the association label being updated
+    # + toObjectType - The target CRM object type for the association label being updated
     # + headers - Headers to be sent with the request 
     # + return - No content 
     resource isolated function put [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionUpdateRequest payload, map<string|string[]> headers = {}) returns error? {
@@ -120,8 +128,10 @@ public isolated client class Client {
         return self.clientEp->put(resourcePath, request, httpHeaders);
     }
 
-    # Create a user-defined association definition
+    # Create an association definition
     #
+    # + fromObjectType - The source CRM object type for the association label being created
+    # + toObjectType - The target CRM object type for the association label being created
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
     resource isolated function post [string fromObjectType]/[string toObjectType]/labels(PublicAssociationDefinitionCreateRequest payload, map<string|string[]> headers = {}) returns CollectionResponseAssociationSpecWithLabelNoPaging|error {
@@ -138,8 +148,10 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Batch delete configurations between two object types
+    # Batch delete configurations
     #
+    # + fromObjectType - The source CRM object type for the batch association configuration removal
+    # + toObjectType - The target CRM object type for the batch association configuration removal
     # + headers - Headers to be sent with the request 
     # + return - No content 
     resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/purge(BatchInputPublicAssociationSpec payload, map<string|string[]> headers = {}) returns error? {
@@ -156,8 +168,11 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Delete an association definition by ID
+    # Delete an association definition
     #
+    # + fromObjectType - The source CRM object type of the association label to remove
+    # + toObjectType - The target CRM object type of the association label to remove
+    # + associationTypeId - The numeric ID of the association type label to delete
     # + headers - Headers to be sent with the request 
     # + return - No content 
     resource isolated function delete [string fromObjectType]/[string toObjectType]/labels/[int:Signed32 associationTypeId](map<string|string[]> headers = {}) returns error? {
@@ -171,8 +186,10 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    # Batch update configurations between two object types
+    # Batch update configurations
     #
+    # + fromObjectType - The source object type for the association configuration update
+    # + toObjectType - The target object type for the association configuration update
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
     resource isolated function post definitions/configurations/[string fromObjectType]/[string toObjectType]/batch/update(BatchInputPublicAssociationDefinitionConfigurationUpdateRequest payload, map<string|string[]> headers = {}) returns BatchResponsePublicAssociationDefinitionConfigurationUpdateResult|BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors|error {

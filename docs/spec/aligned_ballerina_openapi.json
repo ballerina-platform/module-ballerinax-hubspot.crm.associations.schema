@@ -1,0 +1,4738 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "CRM Associations Schema",
+        "version": "v4",
+        "x-hubspot-product-tier-requirements": {
+            "marketing": "FREE",
+            "sales": "FREE",
+            "service": "FREE",
+            "cms": "STARTER"
+        },
+        "x-hubspot-documentation-banner": "NONE",
+        "x-hubspot-api-use-case": "To associate a contact with a company, use this API to get the necessary associationTypeId and associationCategory.",
+        "x-hubspot-related-documentation": [
+            {
+                "name": "Associations Guide",
+                "url": "https://developers.hubspot.com/docs/guides/api/crm/associations"
+            }
+        ],
+        "x-hubspot-introduction": "Use the association schema API to understand how different types of CRM records and activities can relate to one another, as well as define your own custom associations. "
+    },
+    "servers": [
+        {
+            "url": "https://api.hubapi.com/crm/v4/associations"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Definition Configurations"
+        },
+        {
+            "name": "Definitions"
+        }
+    ],
+    "paths": {
+        "/definitions/configurations/all": {
+            "get": {
+                "tags": [
+                    "Definition Configurations"
+                ],
+                "summary": "Retrieve all association definitions",
+                "description": "Returns all user configurations available on a given portal",
+                "operationId": "get-/crm/v4/associations/definitions/configurations/all_getAll",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            }
+        },
+        "/definitions/configurations/{fromObjectType}/{toObjectType}": {
+            "get": {
+                "tags": [
+                    "Definition Configurations"
+                ],
+                "summary": "Get configs between two object types",
+                "description": "Returns user-defined association configurations for all association definitions between the specified object types.",
+                "operationId": "get-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}_getAllBetweenTwoObjectTypes",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source CRM object type for which to retrieve association configurations."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target CRM object type for which to retrieve association configurations."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            }
+        },
+        "/definitions/configurations/{fromObjectType}/{toObjectType}/batch/create": {
+            "post": {
+                "tags": [
+                    "Definition Configurations"
+                ],
+                "summary": "Batch create association configs",
+                "description": "Creates multiple user-defined association configurations between the specified object types in a single batch.",
+                "operationId": "post-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}/batch/create_batchCreate",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source CRM object type for the batch association configuration creation."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target CRM object type for the batch association configuration creation."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BatchInputPublicAssociationDefinitionConfigurationCreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BatchResponsePublicAssociationDefinitionUserConfiguration"
+                                }
+                            }
+                        }
+                    },
+                    "207": {
+                        "description": "multiple statuses",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            }
+        },
+        "/{fromObjectType}/{toObjectType}/labels": {
+            "get": {
+                "tags": [
+                    "Definitions"
+                ],
+                "summary": "Retrieve all association labels",
+                "description": "Returns all association labels for the defined relationship between the specified object types.",
+                "operationId": "get-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_getAll",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source CRM object type for which to retrieve association labels."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target CRM object type for which to retrieve association labels."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionResponseAssociationSpecWithLabelNoPaging"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Definitions"
+                ],
+                "summary": "Update an association definition",
+                "description": "Updates an existing user-defined association definition between two object types",
+                "operationId": "put-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_update",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source CRM object type for the association label being updated."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target CRM object type for the association label being updated."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublicAssociationDefinitionUpdateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "No content",
+                        "content": {}
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Definitions"
+                ],
+                "summary": "Create an association definition",
+                "description": "Creates a new user-defined association definition between two object types",
+                "operationId": "post-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels_create",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source CRM object type for the association label being created."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target CRM object type for the association label being created."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublicAssociationDefinitionCreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionResponseAssociationSpecWithLabelNoPaging"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            }
+        },
+        "/definitions/configurations/{fromObjectType}/{toObjectType}/batch/purge": {
+            "post": {
+                "tags": [
+                    "Definition Configurations"
+                ],
+                "summary": "Batch delete configurations",
+                "description": "Deletes multiple user-defined association configurations between the specified object types in a single batch",
+                "operationId": "post-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}/batch/purge_batchRemove",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source CRM object type for the batch association configuration removal."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target CRM object type for the batch association configuration removal."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BatchInputPublicAssociationSpec"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "No content",
+                        "content": {}
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            }
+        },
+        "/{fromObjectType}/{toObjectType}/labels/{associationTypeId}": {
+            "delete": {
+                "tags": [
+                    "Definitions"
+                ],
+                "summary": "Delete an association definition",
+                "description": "Deletes the association definition corresponding to the specified association type ID between two object types",
+                "operationId": "delete-/crm/v4/associations/{fromObjectType}/{toObjectType}/labels/{associationTypeId}_remove",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source CRM object type of the association label to remove."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target CRM object type of the association label to remove."
+                    },
+                    {
+                        "name": "associationTypeId",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "The numeric ID of the association type label to delete."
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content",
+                        "content": {}
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            }
+        },
+        "/definitions/configurations/{fromObjectType}/{toObjectType}/batch/update": {
+            "post": {
+                "tags": [
+                    "Definition Configurations"
+                ],
+                "summary": "Batch update configurations",
+                "description": "Updates multiple user-defined association configurations between the specified object types in a single batch",
+                "operationId": "post-/crm/v4/associations/definitions/configurations/{fromObjectType}/{toObjectType}/batch/update_batchUpdate",
+                "parameters": [
+                    {
+                        "name": "fromObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The source object type for the association configuration update."
+                    },
+                    {
+                        "name": "toObjectType",
+                        "in": "path",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The target object type for the association configuration update."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BatchInputPublicAssociationDefinitionConfigurationUpdateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BatchResponsePublicAssociationDefinitionConfigurationUpdateResult"
+                                }
+                            }
+                        }
+                    },
+                    "207": {
+                        "description": "multiple statuses",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                },
+                "security": [
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "contacts"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.subscriptions.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "media_bridge.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.companies.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.users.write"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "e-commerce"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "tickets"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.goals.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.write"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.orders.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.commercepayments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.deals.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.appointments.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.invoices.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.leads.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.contacts.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.leads.read"
+                        ]
+                    },
+                    {
+                        "oauth2_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "private_apps_legacy": [
+                            "crm.objects.custom.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.line_items.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.courses.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.listings.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.courses.write"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.quotes.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.carts.read"
+                        ]
+                    },
+                    {
+                        "oauth2": [
+                            "crm.objects.services.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.partner-clients.read"
+                        ]
+                    },
+                    {
+                        "private_apps": [
+                            "crm.objects.quotes.read"
+                        ]
+                    }
+                ],
+                "x-hubspot-rate-limit-exemptions": [
+                    "ten-secondly"
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BatchResponsePublicAssociationDefinitionUserConfigurationWithErrors": {
+                "required": [
+                    "completedAt",
+                    "results",
+                    "startedAt",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "completedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch operation completed."
+                    },
+                    "numErrors": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Total number of errors encountered in the batch operation."
+                    },
+                    "requestedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch operation was requested."
+                    },
+                    "startedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch operation began processing."
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Map of relevant navigational links related to the batch response."
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationDefinitionUserConfiguration"
+                        },
+                        "description": "Array of successfully processed association definition user configurations."
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StandardError"
+                        },
+                        "description": "Array of standard errors encountered during batch processing."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "PROCESSING",
+                            "CANCELED",
+                            "COMPLETE"
+                        ],
+                        "description": "Current processing status of the batch operation."
+                    }
+                },
+                "description": "Batch response containing association definition user configurations, processing status, and any errors encountered."
+            },
+            "PublicAssociationDefinitionCreateRequest": {
+                "required": [
+                    "label",
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "inverseLabel": {
+                        "type": "string",
+                        "description": "Display label for the inverse direction of the association."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique internal name identifying the association definition."
+                    },
+                    "label": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Human-readable display label for the association definition."
+                    }
+                },
+                "description": "Request payload for creating a new association definition, including its name and display labels."
+            },
+            "StandardError": {
+                "required": [
+                    "category",
+                    "context",
+                    "errors",
+                    "links",
+                    "message",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "subCategory": {
+                        "type": "object",
+                        "properties": {},
+                        "description": "Optional object providing additional subcategory classification for the error."
+                    },
+                    "context": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Key-value map of contextual metadata associated with the error."
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Map of relevant links providing additional error reference resources."
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the error instance."
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "High-level category classifying the type of error."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Human-readable description of the error."
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorDetail"
+                        },
+                        "description": "List of detailed error information objects."
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The HTTP status description of the error response."
+                    }
+                },
+                "description": "Structured error object containing category, message, context, and detail information for a failed operation."
+            },
+            "BatchInputPublicAssociationSpec": {
+                "required": [
+                    "inputs"
+                ],
+                "type": "object",
+                "properties": {
+                    "inputs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationSpec"
+                        },
+                        "description": "List of association specs to include in the batch operation."
+                    }
+                },
+                "description": "Batch input wrapper containing a list of association specs to process."
+            },
+            "BatchResponsePublicAssociationDefinitionConfigurationUpdateResult": {
+                "required": [
+                    "completedAt",
+                    "results",
+                    "startedAt",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "completedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp indicating when the batch operation completed."
+                    },
+                    "requestedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp indicating when the batch operation was requested."
+                    },
+                    "startedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp indicating when the batch operation started processing."
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Map of relevant link names to associated URIs for the batch response."
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationDefinitionConfigurationUpdateResult"
+                        },
+                        "description": "List of association definition configuration update results."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "PROCESSING",
+                            "CANCELED",
+                            "COMPLETE"
+                        ],
+                        "description": "Current processing status of the batch operation."
+                    }
+                },
+                "description": "Batch response containing results and status for association definition configuration update operations."
+            },
+            "CollectionResponsePublicAssociationDefinitionUserConfigurationNoPaging": {
+                "required": [
+                    "results"
+                ],
+                "type": "object",
+                "properties": {
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationDefinitionUserConfiguration"
+                        }
+                    }
+                },
+                "description": "Unpaged collection of association definition user configurations."
+            },
+            "PublicAssociationDefinitionConfigurationUpdateResult": {
+                "required": [
+                    "category",
+                    "typeId"
+                ],
+                "type": "object",
+                "properties": {
+                    "userEnforcedMaxToObjectIds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of target object IDs enforced for this association type."
+                    },
+                    "typeId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Numeric identifier of the association type."
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "HUBSPOT_DEFINED",
+                            "USER_DEFINED",
+                            "INTEGRATOR_DEFINED"
+                        ],
+                        "description": "Category indicating who defined the association type."
+                    }
+                },
+                "description": "Result of an association definition configuration update, including type, category, and enforced limits."
+            },
+            "Error": {
+                "required": [
+                    "category",
+                    "correlationId",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "subCategory": {
+                        "type": "string",
+                        "description": "A specific category that contains more specific detail about the error"
+                    },
+                    "context": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Context about the error condition",
+                        "example": {
+                            "missingScopes": [
+                                "scope1",
+                                "scope2"
+                            ],
+                            "invalidPropertyName": [
+                                "propertyValue"
+                            ]
+                        }
+                    },
+                    "correlationId": {
+                        "type": "string",
+                        "description": "A unique identifier for the request. Include this value with any error reports or support tickets",
+                        "format": "uuid",
+                        "example": "aeb5f871-7f07-4993-9211-075dc63e7cbf"
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map of link names to associated URIs containing documentation about the error or recommended remediation steps",
+                        "example": {
+                            "knowledge-base": "https://www.hubspot.com/products/service/knowledge-base"
+                        }
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A human readable message describing the error along with remediation steps where appropriate",
+                        "example": "Invalid input (details will vary based on the error)"
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "The error category",
+                        "example": "VALIDATION_ERROR"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "description": "further information about the error",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorDetail"
+                        }
+                    }
+                },
+                "example": {
+                    "message": "Invalid input (details will vary based on the error)",
+                    "correlationId": "aeb5f871-7f07-4993-9211-075dc63e7cbf",
+                    "category": "VALIDATION_ERROR",
+                    "links": {
+                        "knowledge-base": "https://www.hubspot.com/products/service/knowledge-base"
+                    }
+                },
+                "description": "Standard error object containing message, category, correlation ID, and contextual details."
+            },
+            "PublicAssociationDefinitionConfigurationUpdateRequest": {
+                "required": [
+                    "category",
+                    "maxToObjectIds",
+                    "typeId"
+                ],
+                "type": "object",
+                "properties": {
+                    "typeId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Numeric identifier of the association type to update."
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "HUBSPOT_DEFINED",
+                            "USER_DEFINED",
+                            "INTEGRATOR_DEFINED"
+                        ],
+                        "description": "The category of the association definition to update."
+                    },
+                    "maxToObjectIds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of target objects allowed in this association."
+                    }
+                },
+                "description": "Request payload for updating an association definition configuration, specifying type, category, and object limit."
+            },
+            "PublicAssociationDefinitionConfigurationCreateRequest": {
+                "required": [
+                    "category",
+                    "maxToObjectIds",
+                    "typeId"
+                ],
+                "type": "object",
+                "properties": {
+                    "typeId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The numeric ID of the association type to configure."
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "HUBSPOT_DEFINED",
+                            "USER_DEFINED",
+                            "INTEGRATOR_DEFINED"
+                        ],
+                        "description": "The category of the association definition to configure."
+                    },
+                    "maxToObjectIds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of target objects allowed in this association."
+                    }
+                },
+                "description": "Request body for creating a configuration for an association definition, specifying its type, category, and object limit."
+            },
+            "PublicAssociationDefinitionUpdateRequest": {
+                "required": [
+                    "associationTypeId",
+                    "label"
+                ],
+                "type": "object",
+                "properties": {
+                    "inverseLabel": {
+                        "type": "string",
+                        "description": "The inverse label for the reverse direction of the association."
+                    },
+                    "associationTypeId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The numeric ID of the association type to update."
+                    },
+                    "label": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The display label for the association definition. Nullable."
+                    }
+                },
+                "description": "Request body for updating an association definition's label and optional inverse label."
+            },
+            "ErrorDetail": {
+                "required": [
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "subCategory": {
+                        "type": "string",
+                        "description": "A specific category that contains more specific detail about the error"
+                    },
+                    "code": {
+                        "type": "string",
+                        "description": "The status code associated with the error detail"
+                    },
+                    "in": {
+                        "type": "string",
+                        "description": "The name of the field or parameter in which the error was found"
+                    },
+                    "context": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Context about the error condition",
+                        "example": {
+                            "missingScopes": [
+                                "scope1",
+                                "scope2"
+                            ]
+                        }
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A human readable message describing the error along with remediation steps where appropriate"
+                    }
+                },
+                "description": "Detailed error information including message, code, field location, category, and remediation context."
+            },
+            "AssociationSpecWithLabel": {
+                "required": [
+                    "category",
+                    "typeId"
+                ],
+                "type": "object",
+                "properties": {
+                    "typeId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The numeric ID identifying the association type."
+                    },
+                    "label": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The display label for the association type. Nullable."
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "HUBSPOT_DEFINED",
+                            "USER_DEFINED",
+                            "INTEGRATOR_DEFINED"
+                        ],
+                        "description": "The category classifying the origin of the association type."
+                    }
+                },
+                "description": "An association type specification including its numeric ID, category, and optional display label."
+            },
+            "CollectionResponseAssociationSpecWithLabelNoPaging": {
+                "required": [
+                    "results"
+                ],
+                "type": "object",
+                "properties": {
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AssociationSpecWithLabel"
+                        },
+                        "description": "Array of association type specifications returned in the response."
+                    }
+                },
+                "description": "A non-paginated collection of association type specifications with labels."
+            },
+            "PublicAssociationDefinitionUserConfiguration": {
+                "required": [
+                    "category",
+                    "typeId"
+                ],
+                "type": "object",
+                "properties": {
+                    "userEnforcedMaxToObjectIds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true,
+                        "description": "User-enforced maximum number of target objects. Nullable."
+                    },
+                    "typeId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The numeric ID identifying the association type."
+                    },
+                    "label": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Custom display label for the association definition."
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "HUBSPOT_DEFINED",
+                            "USER_DEFINED",
+                            "INTEGRATOR_DEFINED"
+                        ],
+                        "description": "The origin category of the association definition: HubSpot-defined, user-defined, or integrator-defined."
+                    }
+                },
+                "description": "User-defined configuration for an association definition, including type, category, label, and enforced object limit."
+            },
+            "BatchResponsePublicAssociationDefinitionUserConfiguration": {
+                "required": [
+                    "completedAt",
+                    "results",
+                    "startedAt",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "completedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch operation completed."
+                    },
+                    "requestedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch operation was requested."
+                    },
+                    "startedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch operation started processing."
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Map of relevant hypermedia links associated with the batch response."
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationDefinitionUserConfiguration"
+                        },
+                        "description": "Array of association definition user configuration objects returned by the batch operation."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "PROCESSING",
+                            "CANCELED",
+                            "COMPLETE"
+                        ],
+                        "description": "Current processing status of the batch operation."
+                    }
+                },
+                "description": "Batch response containing user configuration details for multiple association definitions, including processing status and timestamps."
+            },
+            "BatchInputPublicAssociationDefinitionConfigurationUpdateRequest": {
+                "required": [
+                    "inputs"
+                ],
+                "type": "object",
+                "properties": {
+                    "inputs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationDefinitionConfigurationUpdateRequest"
+                        },
+                        "description": "Array of association definition configuration update requests to process in batch."
+                    }
+                },
+                "description": "Batch input payload containing a list of association definition configuration update requests."
+            },
+            "BatchResponsePublicAssociationDefinitionConfigurationUpdateResultWithErrors": {
+                "required": [
+                    "completedAt",
+                    "results",
+                    "startedAt",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "completedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch update operation completed."
+                    },
+                    "numErrors": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Total number of errors encountered during the batch operation."
+                    },
+                    "requestedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch update operation was requested."
+                    },
+                    "startedAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Timestamp when the batch update operation started processing."
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Map of relevant hypermedia links associated with the batch response."
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationDefinitionConfigurationUpdateResult"
+                        },
+                        "description": "Array of association definition configuration update results from the batch operation."
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StandardError"
+                        },
+                        "description": "Array of standard errors encountered during the batch update operation."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "PROCESSING",
+                            "CANCELED",
+                            "COMPLETE"
+                        ],
+                        "description": "Current processing status of the batch update operation."
+                    }
+                },
+                "description": "Batch response for association definition configuration updates, including results, errors, and processing status."
+            },
+            "BatchInputPublicAssociationDefinitionConfigurationCreateRequest": {
+                "required": [
+                    "inputs"
+                ],
+                "type": "object",
+                "properties": {
+                    "inputs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicAssociationDefinitionConfigurationCreateRequest"
+                        },
+                        "description": "Array of association definition configuration create requests to process in batch."
+                    }
+                },
+                "description": "Batch input wrapper containing an array of association definition configuration create requests."
+            },
+            "PublicAssociationSpec": {
+                "required": [
+                    "category",
+                    "typeId"
+                ],
+                "type": "object",
+                "properties": {
+                    "typeId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Numeric identifier for the association type."
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "Category classification of the association type."
+                    }
+                },
+                "description": "Specifies an association type by its numeric ID and category classification."
+            }
+        },
+        "responses": {
+            "Error": {
+                "description": "An error occurred.",
+                "content": {
+                    "*/*": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "oauth2_legacy": {
+                "type": "oauth2",
+                "flows": {
+                    "authorizationCode": {
+                        "authorizationUrl": "https://app.hubspot.com/oauth/authorize",
+                        "tokenUrl": "https://api.hubapi.com/oauth/v1/token",
+                        "scopes": {
+                            "e-commerce": "e-commerce",
+                            "crm.objects.custom.write": "Change custom object records",
+                            "media_bridge.read": "Read media and media events",
+                            "crm.objects.goals.read": "Read goals",
+                            "tickets": "Read and write tickets",
+                            "crm.objects.custom.read": "View custom object records"
+                        }
+                    }
+                }
+            },
+            "oauth2": {
+                "type": "oauth2",
+                "flows": {
+                    "authorizationCode": {
+                        "authorizationUrl": "https://app.hubspot.com/oauth/authorize",
+                        "tokenUrl": "https://api.hubapi.com/oauth/v1/token",
+                        "scopes": {
+                            "crm.objects.contacts.read": " ",
+                            "crm.objects.listings.read": "Read listings",
+                            "crm.objects.carts.write": "Write cart",
+                            "crm.objects.courses.write": "Write courses",
+                            "crm.objects.quotes.write": "Quotes",
+                            "crm.objects.users.read": "Read User CRM objects",
+                            "crm.objects.companies.read": " ",
+                            "crm.objects.appointments.read": "Read appointments",
+                            "crm.objects.partner-clients.write": "Modify Partner Client CRM objects",
+                            "crm.objects.leads.read": "Read lead objects",
+                            "crm.objects.appointments.write": "Write appointments",
+                            "crm.objects.services.write": "Write services",
+                            "crm.objects.line_items.read": "Line Items",
+                            "crm.objects.courses.read": "Read courses",
+                            "crm.objects.deals.read": " ",
+                            "crm.objects.invoices.read": "Read invoices objects",
+                            "crm.objects.partner-clients.read": "View Partner Client CRM objects",
+                            "crm.objects.deals.write": " ",
+                            "crm.objects.line_items.write": "Line Items",
+                            "crm.objects.listings.write": "Write listings",
+                            "crm.objects.companies.write": " ",
+                            "crm.objects.contacts.write": " ",
+                            "crm.objects.users.write": "Write User CRM objects",
+                            "crm.objects.commercepayments.read": "Read the COMMERCE_PAYMENT object.",
+                            "crm.objects.leads.write": "Modify lead objects",
+                            "crm.objects.subscriptions.read": "Read Commerce Subscriptions",
+                            "crm.objects.carts.read": "Read carts",
+                            "crm.objects.orders.write": "Write orders",
+                            "crm.objects.quotes.read": "Quotes",
+                            "crm.objects.services.read": "Read services",
+                            "crm.objects.orders.read": "Read Orders"
+                        }
+                    }
+                }
+            },
+            "private_apps_legacy": {
+                "type": "apiKey",
+                "name": "private-app-legacy",
+                "in": "header",
+                "x-ballerina-name": "privateAppLegacy"
+            },
+            "private_apps": {
+                "type": "apiKey",
+                "name": "private-app",
+                "in": "header",
+                "x-ballerina-name": "privateApp"
+            }
+        }
+    },
+    "x-hubspot-available-client-libraries": [
+        "PHP",
+        "Node",
+        "Ruby",
+        "Python"
+    ],
+    "x-hubspot-product-tier-requirements": {
+        "marketing": "FREE",
+        "sales": "FREE",
+        "service": "FREE",
+        "cms": "STARTER"
+    },
+    "x-hubspot-documentation-banner": "NONE"
+}
